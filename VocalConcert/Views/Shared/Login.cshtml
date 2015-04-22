@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "登录";
+}
+
+<div>
+    @using (Html.BeginForm("Login", "Shared", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <h2>登录</h2>
+        <p>
+            用户名：
+            <br />
+            <input type="text" class="textbox" name="Username" />
+        </p>
+        <p>
+            密码：
+            <br />
+            <input type="password" class="textbox" name="Password" />
+        </p>
+        <p>
+            <input type="submit" class="button button-green" value="登录" />
+        </p>
+    }
+</div>
