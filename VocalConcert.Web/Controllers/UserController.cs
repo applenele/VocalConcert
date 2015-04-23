@@ -19,15 +19,7 @@ namespace VocalConcert.Web.Controllers
             return View();
         }
 
-        public ActionResult Test()
-        {
-            Entity.User user = new Entity.User { Username = "admin", Password = "111111" };
-            db.Users.Add(user);
-            db.SaveChangesAsync();
-            return View();
-        }
-
-
+      
         #region 登陆页面
         /// <summary>
         ///   登陆页面
@@ -121,13 +113,75 @@ namespace VocalConcert.Web.Controllers
         }
         #endregion
 
+        #region 显示用户信息
 
+        /// <summary>
+        ///  显示用户信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [AllowAnonymous]
         public ActionResult Show(int id)
         {
-            Entity.User user =new  Entity.User();
+            Entity.User _user = new Entity.User();
+            _user = db.Users.Find(id);
+            vUser user = new Models.ViewModel.vUser(_user);
+            ViewBag.User = user;
+            return View();
+        } 
+        #endregion
+
+
+        #region 修改用户信息
+        /// <summary>
+        ///  修改用户信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            Entity.User user = new Entity.User();
             user = db.Users.Find(id);
             ViewBag.User = user;
             return View();
+        } 
+        #endregion
+
+
+        [HttpPost]
+        public ActionResult Edit(vUserEdit model)
+        {
+            Entity.User user = new Entity.User();
+            user = db.Users.Find(model.ID);
+
+            user.Username = model.Username;
+            user.City = model.City;
+            user.Name = model.Name;
+            user.Phone = model.Phone;
+            if (!"".Equals(model.Password))
+            {
+                if (user.Password.Equals(Helper.Encryt.GetMD5(model.Password)))
+                {
+                    model.Password = Helper.Encryt.GetMD5(model.NewPassword);
+                    db.SaveChanges();
+                    return Redirect("/User/" + model.ID);
+                }
+                else
+                {
+                    db.SaveChanges();
+                    ModelState.AddModelError("", "用户原始密码不正确！请输入正确的原始密码！");
+                }
+            }
+            else
+            {
+                db.SaveChanges();
+                return Redirect("/User/" + model.ID);
+            }
+            ViewBag.User = user;
+            return View(model);
         }
+
     }
 }

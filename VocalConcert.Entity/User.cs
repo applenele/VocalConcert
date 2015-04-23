@@ -22,6 +22,7 @@ namespace VocalConcert.Entity
         /// <summary>
         /// 用户ID
         /// </summary>
+        [Key]
         [Column("id")]
         public int ID { get; set; }
 
@@ -73,5 +74,7 @@ namespace VocalConcert.Entity
         /// </summary>
         [Column("phone")]
         public string Phone { get; set; }
+
+        public virtual ICollection<Group> Groups { get; set;}
     }
 }

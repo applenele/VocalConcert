@@ -11,16 +11,11 @@ namespace VocalConcert.Entity
     public class GroupMember
     {
         /// <summary>
-        /// ID
-        /// </summary>
-        [Column("id")]
-        public int ID { get; set; }
-
-        /// <summary>
         /// 用户ID
         /// </summary>
+        [Key]
         [ForeignKey("User")]
-        [Column("userId")]
+        [Column(Order = 0)]
         public int UserID { get; set; }
         
         public virtual User User { get; set; }
@@ -28,8 +23,9 @@ namespace VocalConcert.Entity
         /// <summary>
         /// 歌友会ID
         /// </summary>
+        [Key]
         [ForeignKey("Group")]
-        [Column("groupId")]
+        [Column(Order = 1)]
         public int GroupID { get; set; }
 
         public virtual Group Group { get; set; }

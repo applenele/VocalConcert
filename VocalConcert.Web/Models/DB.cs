@@ -23,6 +23,7 @@ namespace VocalConcert.Web.Models
         public DbSet<Comment> Comments { get; set; }
         //public DbSet<Discussion> Discussions { get; set; }
 
-       
+        
+      
     }
 }

@@ -163,6 +163,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ConcertController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -172,6 +173,8 @@
     <Compile Include="Helper\Encryt.cs" />
     <Compile Include="Helper\Time.cs" />
     <Compile Include="Models\DB.cs" />
+    <Compile Include="Models\ViewModel\vUser.cs" />
+    <Compile Include="Models\ViewModel\vUserEdit.cs" />
     <Compile Include="Models\ViewModel\vUserLogin.cs" />
     <Compile Include="Models\ViewModel\vUserRegister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -248,10 +251,12 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Show.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Concert\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

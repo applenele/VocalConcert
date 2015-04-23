@@ -1,13 +1,26 @@
-﻿
+﻿@using VocalConcert.Web.Models.ViewModel;
+
 @{
     ViewBag.Title = "Show";
+    vUser user = ViewBag.User as vUser;
 }
 
 
 <h2>个人中心</h2>
 
 
-<div >
-
-
+<div class="jumbotron">
+    <div>用户名：@user.Username</div>
+    <div>图像:@user.Avatar</div>
+    <div>角色:@user.Role</div>
+    <div>城市：@user.City</div>
+    <div>真实姓名:@user.Name</div>
+    <div>电话：@user.Phone</div>
+    @if (ViewBag.CurrentUser != null)
+    { 
+       if(ViewBag.CurrentUser.ID==user.ID)
+       { 
+           <a href="/User/Edit/@user.ID">修个人信息</a>
+       }
+    }
 </div>

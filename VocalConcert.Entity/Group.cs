@@ -55,6 +55,7 @@ namespace VocalConcert.Entity
         [Column("city")]
         public string City { get; set; }
 
+
         public virtual ICollection<User> Members { get; set; }
 
     }

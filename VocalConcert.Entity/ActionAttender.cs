@@ -11,15 +11,11 @@ namespace VocalConcert.Entity
     public class ActionAttender
     {
         /// <summary>
-        /// ID
-        /// </summary>
-        public int ID { get; set; }
-
-        /// <summary>
         /// 用户ID
         /// </summary>
+        [Key]
         [ForeignKey("User")]
-        [Column("userId")]
+        [Column(Order = 0)]
         public int UserID { get; set; }
 
         public virtual User User { get; set; }
@@ -27,8 +23,9 @@ namespace VocalConcert.Entity
         /// <summary>
         /// 活动ID
         /// </summary>
+        [Key]
         [ForeignKey("Action")]
-        [Column("actionId")]
+        [Column(Order = 1)]
         public int ActionID { get; set; }
 
         public virtual Action Action { get; set; }

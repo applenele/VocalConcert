@@ -14,6 +14,7 @@ namespace VocalConcert.Entity
         Instrument //伴奏
     }
 
+    [Table("t_music")]
     public class Music
     {
         /// <summary>
@@ -37,7 +38,7 @@ namespace VocalConcert.Entity
         /// <summary>
         /// 歌词
         /// </summary>
-        [Column("lyroc")]
+        [Column("lyric")]
         public string Lyric { get; set; }
 
         /// <summary>
@@ -61,7 +62,7 @@ namespace VocalConcert.Entity
         [Column("uploadTime")]
         public DateTime Time { get; set; }
 
-        [Column("musciType")]
+        [Column("musicType")]
         public int TypeAsInt { get; set; }
 
         /// <summary>

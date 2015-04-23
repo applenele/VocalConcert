@@ -2,4 +2,3 @@
 \\psf\Home\Desktop\vsprojects\VocalConcert\VocalConcert.Entity\bin\Debug\VocalConcert.Entity.pdb
 \\psf\Home\Desktop\vsprojects\VocalConcert\VocalConcert.Entity\obj\Debug\VocalConcert.Entity.dll
 \\psf\Home\Desktop\vsprojects\VocalConcert\VocalConcert.Entity\obj\Debug\VocalConcert.Entity.pdb
-\\psf\Home\Desktop\vsprojects\VocalConcert\VocalConcert.Entity\obj\Debug\VocalConcert.Entity.csprojResolveAssemblyReference.cache

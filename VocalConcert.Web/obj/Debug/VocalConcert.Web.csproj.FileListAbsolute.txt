@@ -1,4 +1,3 @@
-\\psf\Home\Desktop\vsprojects\VocalConcert\VocalConcert.Web\obj\Debug\VocalConcert.Web.csprojResolveAssemblyReference.cache
 \\psf\Home\Desktop\vsprojects\VocalConcert\VocalConcert.Web\bin\VocalConcert.Web.dll.config
 \\psf\Home\Desktop\vsprojects\VocalConcert\VocalConcert.Web\bin\VocalConcert.Web.dll
 \\psf\Home\Desktop\vsprojects\VocalConcert\VocalConcert.Web\bin\VocalConcert.Web.pdb
@@ -74,5 +73,6 @@
 \\psf\Home\Desktop\vsprojects\VocalConcert\VocalConcert.Web\bin\zh-Hans\Microsoft.Owin.Security.Google.resources.dll
 \\psf\Home\Desktop\vsprojects\VocalConcert\VocalConcert.Web\bin\zh-Hans\Microsoft.Owin.Security.Twitter.resources.dll
 \\psf\Home\Desktop\vsprojects\VocalConcert\VocalConcert.Web\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+\\psf\Home\Desktop\vsprojects\VocalConcert\VocalConcert.Web\obj\Debug\VocalConcert.Web.csprojResolveAssemblyReference.cache
 \\psf\Home\Desktop\vsprojects\VocalConcert\VocalConcert.Web\obj\Debug\VocalConcert.Web.dll
 \\psf\Home\Desktop\vsprojects\VocalConcert\VocalConcert.Web\obj\Debug\VocalConcert.Web.pdb

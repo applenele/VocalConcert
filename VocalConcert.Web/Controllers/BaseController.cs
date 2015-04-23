@@ -25,7 +25,7 @@ namespace VocalConcert.Web.Controllers
             {
                 CurrentUser = (from u in db.Users
                                where u.Username == User.Identity.Name
-                               select u).Single();
+                               select u).SingleOrDefault();
                 ViewBag.CurrentUser = CurrentUser;
                 Role = CurrentUser.Role;
                 ViewBag.Role = Role;
