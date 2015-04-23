@@ -21,7 +21,7 @@ namespace VocalConcert.Web.Controllers
         protected override void Initialize(RequestContext requestContext)
         {
             base.Initialize(requestContext);
-            if (User.Identity.IsAuthenticated)
+            if (requestContext.HttpContext.User.Identity.IsAuthenticated)
             {
                 CurrentUser = (from u in db.Users
                                where u.Username == User.Identity.Name

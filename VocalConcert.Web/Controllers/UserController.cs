@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using VocalConcert.Web.Models;
 using VocalConcert.Web.Models.ViewModel;
 
@@ -27,13 +28,26 @@ namespace VocalConcert.Web.Controllers
         }
 
 
+        #region 登陆页面
+        /// <summary>
+        ///   登陆页面
+        /// </summary>
+        /// <returns></returns>
         [Route("Login")]
         [HttpGet]
         public ActionResult Login()
         {
             return View();
-        }
+        } 
+        #endregion
 
+
+        #region 登陆
+        /// <summary>
+        /// 登陆操作
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [Route("Login")]
         [HttpPost]
         public ActionResult Login(vUserLogin model)
@@ -41,17 +55,35 @@ namespace VocalConcert.Web.Controllers
             if (ModelState.IsValid)
             {
 
-
+                Entity.User user = new Entity.User();
+                model.Password = Helper.Encryt.GetMD5(model.Password);
+                user = db.Users.Where(u => u.Username == model.Username && u.Password == model.Password).FirstOrDefault();
+                if (user == null)
+                {
+                    ModelState.AddModelError("", "用户名或者密码不正确！");
+                }
+                else
+                {
+                    FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "验证失败！请重新登陆！");
             }
             return View(model);
-        }
+        } 
+        #endregion
 
+        #region 注册页面
         [Route("Register")]
         [HttpGet]
         public ActionResult Register()
         {
             return View();
-        }
+        } 
+        #endregion
 
         #region 注册
         [Route("Register")]
@@ -68,6 +100,7 @@ namespace VocalConcert.Web.Controllers
                 }
                 else
                 {
+                    user = new Entity.User();
                     user.Username = model.Username;
                     user.Password = Helper.Encryt.GetMD5(model.Username);
                     user.Phone = model.Password;
@@ -88,5 +121,13 @@ namespace VocalConcert.Web.Controllers
         }
         #endregion
 
+
+        public ActionResult Show(int id)
+        {
+            Entity.User user =new  Entity.User();
+            user = db.Users.Find(id);
+            ViewBag.User = user;
+            return View();
+        }
     }
 }
