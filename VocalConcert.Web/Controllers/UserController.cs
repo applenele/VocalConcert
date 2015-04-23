@@ -42,7 +42,7 @@ namespace VocalConcert.Web.Controllers
         /// <returns></returns>
         [Route("Login")]
         [HttpPost]
-        public ActionResult Login(vUserLogin model)
+        public ActionResult Login(vUserLogin model,string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace VocalConcert.Web.Controllers
                 else
                 {
                     FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
-                    return RedirectToAction("Index", "Home");
+                    return Redirect(returnUrl ?? "/Home/Index");
                 }
             }
             else
@@ -183,5 +183,18 @@ namespace VocalConcert.Web.Controllers
             return View(model);
         }
 
+
+        #region 注销
+        /// <summary>
+        ///  注销
+        /// </summary>
+        /// <returns></returns>
+        [Route("Logout")]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        } 
+        #endregion
     }
 }

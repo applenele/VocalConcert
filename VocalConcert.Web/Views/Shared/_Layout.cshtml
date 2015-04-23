@@ -46,7 +46,7 @@
             <div class="wrap-content">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <p>您好，@ViewBag.CurrentUser.Username。<a href="/User/@ViewBag.CurrentUser.ID">点击这里</a>进入个人中心。</p>
+                    <p>您好，@ViewBag.CurrentUser.Username。<a href="/User/@ViewBag.CurrentUser.ID">点击这里</a>进入个人中心。<a href="/Logout">注销</a></p>
                 }
                 else
                 {

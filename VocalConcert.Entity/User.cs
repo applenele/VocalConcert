@@ -29,22 +29,18 @@ namespace VocalConcert.Entity
         /// <summary>
         /// 用户名
         /// </summary>
-        [Column("username")]
         public string Username { get; set; }
 
         /// <summary>
         /// 密码
         /// </summary>
-        [Column("password")]
         public string Password { get; set; }
 
         /// <summary>
         /// 用户头像
         /// </summary>
-        [Column("avatar")]
         public byte[] Avatar { get; set; }
 
-        [Column("role")]
         public int RoleAsInt { set; get; }
 
         /// <summary>
@@ -60,19 +56,16 @@ namespace VocalConcert.Entity
         /// <summary>
         /// 城市
         /// </summary>
-        [Column("city")]
         public string City { get; set; }
 
         /// <summary>
         /// 姓名
         /// </summary>
-        [Column("uname")]
         public string Name { get; set; }
 
         /// <summary>
         /// 手机号码
         /// </summary>
-        [Column("phone")]
         public string Phone { get; set; }
 
         public virtual ICollection<Group> Groups { get; set;}

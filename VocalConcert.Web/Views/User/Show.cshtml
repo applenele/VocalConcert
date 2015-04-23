@@ -23,4 +23,11 @@
            <a href="/User/Edit/@user.ID">修个人信息</a>
        }
     }
+    
+    <div>
+        @foreach (var group in user.Groups)
+        { 
+          <span><a href="#">@group.Title</a></span>
+        }
+    </div>
 </div>

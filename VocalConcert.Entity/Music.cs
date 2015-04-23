@@ -20,31 +20,26 @@ namespace VocalConcert.Entity
         /// <summary>
         /// 音乐ID
         /// </summary>
-        [Column("id")]
         public int ID { get; set; }
 
         /// <summary>
         /// 标题
         /// </summary>
-        [Column("title")]
         public string Title { get; set; }
 
         /// <summary>
         /// 说明
         /// </summary>
-        [Column("description")]
         public string Description { get; set; }
 
         /// <summary>
         /// 歌词
         /// </summary>
-        [Column("lyric")]
         public string Lyric { get; set; }
 
         /// <summary>
         /// 上传用户ID
         /// </summary>
-        [Column("userId")]
         [ForeignKey("User")]
         public int UserID { get; set; }
 
@@ -53,16 +48,13 @@ namespace VocalConcert.Entity
         /// <summary>
         /// 推荐标识
         /// </summary>
-        [Column("recommendMark")]
         public bool RecommendMark { get; set; }
 
         /// <summary>
         /// 上传时间
         /// </summary>
-        [Column("uploadTime")]
         public DateTime Time { get; set; }
 
-        [Column("musicType")]
         public int TypeAsInt { get; set; }
 
         /// <summary>

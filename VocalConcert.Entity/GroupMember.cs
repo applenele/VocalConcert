@@ -33,7 +33,6 @@ namespace VocalConcert.Entity
         /// <summary>
         /// 加入时间
         /// </summary>
-        [Column("ptime")]
         public DateTime Time { get; set; }
     }
 }
