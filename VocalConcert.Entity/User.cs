@@ -29,14 +29,12 @@ namespace VocalConcert.Entity
         /// 用户名
         /// </summary>
         [Column("username")]
-        [Required]
         public string Username { get; set; }
 
         /// <summary>
         /// 密码
         /// </summary>
         [Column("password")]
-        [Required]
         public string Password { get; set; }
 
         /// <summary>

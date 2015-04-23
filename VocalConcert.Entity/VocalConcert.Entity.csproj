@@ -43,7 +43,6 @@
     <Compile Include="Action.cs" />
     <Compile Include="ActionAttender.cs" />
     <Compile Include="Comment.cs" />
-    <Compile Include="Discussion.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="GroupMember.cs" />
     <Compile Include="Music.cs" />

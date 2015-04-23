@@ -11,6 +11,8 @@ namespace VocalConcert.Web
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.MapMvcAttributeRoutes();
+
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
@@ -19,5 +21,7 @@ namespace VocalConcert.Web
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }
+
+
     }
 }

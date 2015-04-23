@@ -11,9 +11,13 @@ namespace VocalConcert.Web.Controllers
 {
     public class BaseController : Controller
     {
-        public readonly DB db = new DB();
+        public DB db = new DB();
         public User CurrentUser = null;
         public UserRole? Role = null;
+
+        public BaseController() { }
+
+
         protected override void Initialize(RequestContext requestContext)
         {
             base.Initialize(requestContext);

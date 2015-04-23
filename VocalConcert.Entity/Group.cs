@@ -57,6 +57,5 @@ namespace VocalConcert.Entity
 
         public virtual ICollection<User> Members { get; set; }
 
-        public virtual ICollection<Discussion> Discussions { get; set; }
     }
 }
