@@ -1,12 +1,23 @@
-﻿@{
+﻿@using VocalConcert.Web.Models.ViewModel;
+
+@{
     ViewBag.Title = " 首页";
 }
 
 <div class="jumbotron">
      <div>
           热门歌友会：
+          @foreach (var group in ViewBag.Groups2 as List<vGroup>)
+          { 
+            <div><a href="/Concert/Show/@group.ID">@group.Title</a></div>
+          }
+
      </div>
     <div>
         最新歌友会：
+        @foreach (var group in ViewBag.Groups as List<vGroup>)
+        {
+            <div><a href="/Concert/Show/@group.ID">@group.Title</a></div>
+        }
     </div>
 </div>
