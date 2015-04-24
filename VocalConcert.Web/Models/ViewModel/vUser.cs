@@ -32,6 +32,7 @@ namespace VocalConcert.Web.Models.ViewModel
             this.Username = user.Username;
             this.City = user.City;
             this.Avatar = user.Avatar;
+            this.Name = user.Name;
             this.Role = user.Role;
             this.Phone = user.Phone;
             this.Groups = user.Groups.ToList();

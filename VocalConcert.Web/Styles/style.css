@@ -413,3 +413,13 @@ footer .inside {
 #page1 header { height:449px; background:url(/images/header-bg.jpg) no-repeat center top;}
 #page1 header h1 {top:128px;}
 #page1 header nav ul li.m4 a:hover { background:url(/images/m4-act-alt.png) no-repeat left top;}
+
+
+.clr {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+    padding: 0;
+    margin: 0;
+}

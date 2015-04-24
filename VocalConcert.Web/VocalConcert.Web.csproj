@@ -165,6 +165,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ConcertController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -173,6 +174,7 @@
     <Compile Include="Helper\Encryt.cs" />
     <Compile Include="Helper\Time.cs" />
     <Compile Include="Models\DB.cs" />
+    <Compile Include="Models\ViewModel\vGroup.cs" />
     <Compile Include="Models\ViewModel\vGroupAdd.cs" />
     <Compile Include="Models\ViewModel\vUser.cs" />
     <Compile Include="Models\ViewModel\vUserEdit.cs" />
@@ -226,6 +228,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\script.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Styles\ie\ie6.css" />
     <Content Include="Styles\layout.css" />
@@ -255,6 +258,9 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\Concert\Index.cshtml" />
     <Content Include="Views\Concert\Add.cshtml" />
+    <Content Include="Views\Concert\Show.cshtml" />
+    <Content Include="Views\Concert\Edit.cshtml" />
+    <Content Include="Views\Shared\Message.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

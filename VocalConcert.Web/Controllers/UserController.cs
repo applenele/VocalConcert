@@ -160,7 +160,7 @@ namespace VocalConcert.Web.Controllers
             user.City = model.City;
             user.Name = model.Name;
             user.Phone = model.Phone;
-            if (!"".Equals(model.Password))
+            if (!string.IsNullOrEmpty(model.Password))
             {
                 if (user.Password.Equals(Helper.Encryt.GetMD5(model.Password)))
                 {

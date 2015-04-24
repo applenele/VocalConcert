@@ -18,7 +18,7 @@ namespace VocalConcert.Web.Controllers
         }
 
 
-        #region 增肌歌友会
+        #region 增加歌友会
 
         [Authorize]
         [HttpGet]
@@ -51,6 +51,11 @@ namespace VocalConcert.Web.Controllers
                 int result = await db.SaveChangesAsync();
                 if (result > 0)
                 {
+                    int groupId = group.ID;
+                    int userId = CurrentUser.ID;
+                    GroupMember gm = new GroupMember{GroupID=groupId,UserID=userId,Time=DateTime.Now};
+                    db.GroupMembers.Add(gm);
+                    db.SaveChanges();
                     return RedirectToAction("Index", "Concert");
                 }
                 else
@@ -65,5 +70,112 @@ namespace VocalConcert.Web.Controllers
             return View();
         } 
         #endregion
+
+
+        #region 获取歌友会
+        /// <summary>
+        /// 获取歌友会
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public ActionResult GetConcerts(int page)
+        {
+            List<Group> _groups = new List<Group>();
+            List<vGroup> groups = new List<vGroup>();
+            _groups = db.Groups.OrderByDescending(c=>c.Time).Skip(page * 10).Take(10).ToList();
+            foreach (var group in _groups)
+            {
+                groups.Add(new vGroup(group));
+            }
+            return Json(groups);
+        } 
+        #endregion
+
+
+        #region 显示歌友会
+        /// <summary>
+        /// 显示歌友会
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Show(int id)
+        {
+            Group group = new Group();
+            group = db.Groups.Find(id);
+            ViewBag.Group = new vGroup(group);
+            return View(new vGroup(group));
+        } 
+        #endregion
+
+
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize]
+        public ActionResult Edit(int id)
+        {
+            Group group = new Group();
+            group = db.Groups.Find(id);
+            ViewBag.Group = new vGroup(group);
+            return View(new vGroup(group));
+        }
+
+
+        #region 执行修改
+        /// <summary>
+        /// 执行修改 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Authorize]
+        public ActionResult Edit(vGroup model)
+        {
+            Group group = new Group();
+            group = db.Groups.Find(model.ID);
+            group.Title = model.Title;
+            group.Description = model.Description;
+            group.City = model.City;
+            db.SaveChanges();
+            return Redirect("/Concert/Show/"+model.ID);
+        } 
+        #endregion
+
+
+        /// <summary>
+        ///  加入歌友会
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet]
+        public async Task<ActionResult> Attend(int id)
+        {
+            int userId = CurrentUser.ID;
+            GroupMember _gm = new GroupMember();
+            _gm = db.GroupMembers.Where(gm => gm.UserID == userId && gm.GroupID == id).SingleOrDefault();
+            if (_gm == null)
+            {
+                _gm = new GroupMember();
+                _gm.GroupID = id;
+                _gm.UserID = userId;
+                _gm.Time = DateTime.Now;
+                db.GroupMembers.Add(_gm);
+                int result = await db.SaveChangesAsync();
+                if (result > 0)
+                {
+                    return Redirect("/Concert/Show/" + id);
+                }
+            }
+            else
+            {
+                return Msg("你已经是该歌友会的成员！");
+            }
+            return View();
+        }
     }
 }
