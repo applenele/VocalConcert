@@ -170,12 +170,15 @@ namespace VocalConcert.Web.Controllers
                 {
                     return Redirect("/Concert/Show/" + id);
                 }
+                else
+                {
+                    return Msg("加入歌友会失败！");
+                }
             }
             else
             {
                 return Msg("你已经是该歌友会的成员！");
             }
-            return View();
         }
     }
 }
