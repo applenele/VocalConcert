@@ -162,20 +162,27 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ConcertController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeagueController.cs" />
+    <Compile Include="Controllers\MusicController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\CalendarExtensions.cs" />
     <Compile Include="Helper\DateHelper.cs" />
     <Compile Include="Helper\Encryt.cs" />
     <Compile Include="Helper\Time.cs" />
     <Compile Include="Models\DB.cs" />
+    <Compile Include="Models\ViewModel\vAction.cs" />
+    <Compile Include="Models\ViewModel\vActionList.cs" />
     <Compile Include="Models\ViewModel\vGroup.cs" />
     <Compile Include="Models\ViewModel\vGroupAdd.cs" />
+    <Compile Include="Models\ViewModel\vGroupList.cs" />
     <Compile Include="Models\ViewModel\vUser.cs" />
     <Compile Include="Models\ViewModel\vUserEdit.cs" />
     <Compile Include="Models\ViewModel\vUserLogin.cs" />
@@ -184,6 +191,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -215,12 +223,16 @@
     <Content Include="Images\marker.gif" />
     <Content Include="Images\marker1.gif" />
     <Content Include="Images\spacer.gif" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.zh-CN.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -261,10 +273,17 @@
     <Content Include="Views\Concert\Show.cshtml" />
     <Content Include="Views\Concert\Edit.cshtml" />
     <Content Include="Views\Shared\Message.cshtml" />
+    <Content Include="Views\Action\Add.cshtml" />
+    <Content Include="Views\Action\Index.cshtml" />
+    <Content Include="Views\Action\Show.cshtml" />
+    <Content Include="Views\Action\Edit.cshtml" />
+    <Content Include="Views\Music\Index.cshtml" />
+    <Content Include="Views\Music\Upload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\League\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

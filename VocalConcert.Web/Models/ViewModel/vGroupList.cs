@@ -7,8 +7,9 @@ using VocalConcert.Entity;
 
 namespace VocalConcert.Web.Models.ViewModel
 {
-    public class vGroup
+    public class vGroupList
     {
+
         [Display(Name="歌友会ID")]
         public int ID { get; set; }
 
@@ -21,7 +22,7 @@ namespace VocalConcert.Web.Models.ViewModel
 
         public int UserID { get; set; }
 
-        public vUser User { get; set; }
+        public string Username { get; set; }
 
         [Display(Name="创建时间")]
         public string Time { get; set; }
@@ -30,12 +31,11 @@ namespace VocalConcert.Web.Models.ViewModel
         [Display(Name="城市")]
         public string City { get; set; }
 
-        public List<vUser> Attenders { get; set; }
 
 
-        public vGroup() { }
+        public vGroupList() { }
 
-        public vGroup(Group group)
+        public vGroupList(Group group)
         {
 
             DB db=new DB();
@@ -43,19 +43,10 @@ namespace VocalConcert.Web.Models.ViewModel
             this.Title = group.Title;
             this.Description = group.Description;
             this.UserID = group.UserID;
-            this.User = new vUser(db.Users.Find(group.UserID));
+            this.Username = db.Users.Find(group.UserID).Username;
             this.Time = group.Time.ToString();
             this.City = group.City;
-            List<GroupMember> gms = new List<GroupMember>();
-            Attenders = new List<vUser>();
-            gms = db.GroupMembers.Where(gm=>gm.GroupID==group.ID).ToList();
-
-            foreach (var gm in gms)
-            {
-                Attenders.Add(new vUser(gm.User));
-            }
         }
-
 
     }
 }

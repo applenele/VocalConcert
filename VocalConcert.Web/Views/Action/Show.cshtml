@@ -1,13 +1,17 @@
-﻿@model VocalConcert.Web.Models.ViewModel.vGroup
+﻿@model VocalConcert.Web.Models.ViewModel.vAction
 
 @{
     ViewBag.Title = "Show";
 }
 
-<h2>显示歌友会信息</h2>
+<h2>活动展示</h2>
 
 <div class="jumbotron">
     <dl class="dl-horizontal">
+        
+
+       
+
         <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>
@@ -33,6 +37,31 @@
         </dd>
 
         <dt>
+            所属歌友会
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Group.Title)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Begin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Begin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.End)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.End)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Time)
         </dt>
 
@@ -41,20 +70,27 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.City)
+            @Html.DisplayNameFor(model => model.Address)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.City)
+            @Html.DisplayFor(model => model.Address)
         </dd>
-        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hint)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hint)
+        </dd>
     </dl>
 
     <p>
-        成员:
-        @foreach (var user in Model.Attenders)
-        { 
-           <div style="float:left;margin-right:20px;"><a href="/User/@user.ID">@user.Username</a> </div>
+        参与人员:
+        @foreach (var user in Model.Users)
+        {
+            <div style="float:left;margin-right:20px;"><a href="/User/@user.ID">@user.Username</a> </div>
         }
     </p>
     <div class="clr"></div>
@@ -66,10 +102,7 @@
                 <span>@Html.ActionLink("修改", "Edit", new { id = Model.ID })</span>
             }
         }
-        
-
-        <a href="/Concert/Attend/@Model.ID">加入</a>  
-        <a href="/Action/Add/@Model.ID">发起活动</a>
+        <a href="/Action/Attend/@Model.ID">参与</a>
     </p>
 </div>
 

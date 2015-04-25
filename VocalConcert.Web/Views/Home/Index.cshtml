@@ -20,4 +20,19 @@
             <div><a href="/Concert/Show/@group.ID">@group.Title</a></div>
         }
     </div>
+
+    <div>
+        热门活动：
+        @foreach (var action in ViewBag.Actions2 as List<vAction>)
+        {
+            <div><a href="/Action/Show/@action.ID">@action.Title</a></div>
+        }
+    </div>
+    <div>
+        最新活动：
+        @foreach (var action in ViewBag.Actions as List<vAction>)
+        {
+            <div><a href="/Action/Show/@action.ID">@action.Title</a></div>
+        }
+    </div>
 </div>

@@ -25,16 +25,19 @@ namespace VocalConcert.Entity
         /// <summary>
         /// 标题
         /// </summary>
+        [Display(Name="歌名")]
         public string Title { get; set; }
 
         /// <summary>
         /// 说明
         /// </summary>
+        [Display(Name="描述")]
         public string Description { get; set; }
 
         /// <summary>
         /// 歌词
         /// </summary>
+        [Display(Name="歌词")]
         public string Lyric { get; set; }
 
         /// <summary>
@@ -48,13 +51,18 @@ namespace VocalConcert.Entity
         /// <summary>
         /// 推荐标识
         /// </summary>
+        [Display(Name="是否推荐")]
         public bool RecommendMark { get; set; }
+
+      
+        public string Path { get; set; }
 
         /// <summary>
         /// 上传时间
         /// </summary>
         public DateTime Time { get; set; }
 
+        [Display(Name="音乐类型")]
         public int TypeAsInt { get; set; }
 
         /// <summary>

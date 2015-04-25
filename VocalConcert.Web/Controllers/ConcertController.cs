@@ -53,7 +53,7 @@ namespace VocalConcert.Web.Controllers
                 {
                     int groupId = group.ID;
                     int userId = CurrentUser.ID;
-                    GroupMember gm = new GroupMember{GroupID=groupId,UserID=userId,Time=DateTime.Now};
+                    GroupMember gm = new GroupMember { GroupID = groupId, UserID = userId, Time = DateTime.Now };
                     db.GroupMembers.Add(gm);
                     db.SaveChanges();
                     return RedirectToAction("Index", "Concert");
@@ -68,7 +68,7 @@ namespace VocalConcert.Web.Controllers
                 ModelState.AddModelError("", "发起信息填写错误，请重新填写!");
             }
             return View();
-        } 
+        }
         #endregion
 
 
@@ -81,14 +81,19 @@ namespace VocalConcert.Web.Controllers
         public ActionResult GetConcerts(int page)
         {
             List<Group> _groups = new List<Group>();
-            List<vGroup> groups = new List<vGroup>();
-            _groups = db.Groups.OrderByDescending(c=>c.Time).Skip(page * 10).Take(10).ToList();
+            List<vGroupList> groups = new List<vGroupList>();
+
+
+            db.Configuration.LazyLoadingEnabled = false;
+            db.Configuration.ProxyCreationEnabled = false;
+            _groups = db.Groups.OrderByDescending(c => c.Time).Skip(page * 10).Take(10).ToList();
             foreach (var group in _groups)
             {
-                groups.Add(new vGroup(group));
+                groups.Add(new vGroupList(group));
             }
+
             return Json(groups);
-        } 
+        }
         #endregion
 
 
@@ -105,7 +110,7 @@ namespace VocalConcert.Web.Controllers
             group = db.Groups.Find(id);
             ViewBag.Group = new vGroup(group);
             return View(new vGroup(group));
-        } 
+        }
         #endregion
 
 
@@ -141,8 +146,8 @@ namespace VocalConcert.Web.Controllers
             group.Description = model.Description;
             group.City = model.City;
             db.SaveChanges();
-            return Redirect("/Concert/Show/"+model.ID);
-        } 
+            return Redirect("/Concert/Show/" + model.ID);
+        }
         #endregion
 
 

@@ -49,7 +49,7 @@ namespace VocalConcert.Entity
         public string City { get; set; }
 
 
-        public virtual ICollection<User> Members { get; set; }
+       // public virtual ICollection<User> Members { get; set; }
 
     }
 }
