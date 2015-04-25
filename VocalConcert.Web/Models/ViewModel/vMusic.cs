@@ -6,7 +6,7 @@ using VocalConcert.Entity;
 
 namespace VocalConcert.Web.Models.ViewModel
 {
-    public class vMusicList
+    public class vMusic
     {
         public int ID { get; set; }
 
@@ -14,22 +14,34 @@ namespace VocalConcert.Web.Models.ViewModel
 
         public string Description { get; set; }
 
-        public string Username { get; set; }
+        public string Lyric { get; set; }
+
+        public string Path { get; set; }
+
+        public int UserID { get; set; }
+
+        public User User { get; set; }
 
         public bool RecommendMark { get; set; }
 
         public string Time { get; set; }
 
-        public vMusicList() { }
+        public string Type { get; set; }
 
-        public vMusicList(Music music)
+        public vMusic() { }
+
+        public vMusic(Music music)
         {
             this.ID = music.ID;
             this.Title = music.Title;
             this.Description = music.Description;
-            this.Username = music.User.Username;
+            this.Lyric = music.Lyric;
+            this.Path = music.Path;
+            this.UserID = music.UserID;
+            this.User = music.User;
             this.RecommendMark = music.RecommendMark;
-            this.Time = Helper.Time.ToTimeTip(music.Time);
+            this.Title = Helper.Time.ToTimeTip(music.Time);
+            this.Type = music.Type.ToString();
         }
     }
 }

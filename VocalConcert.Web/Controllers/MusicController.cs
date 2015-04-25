@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using VocalConcert.Entity;
 using VocalConcert.Web.Helper;
+using VocalConcert.Web.Models.ViewModel;
 
 namespace VocalConcert.Web.Controllers
 {
@@ -81,5 +82,35 @@ namespace VocalConcert.Web.Controllers
             return View(model);
         } 
         #endregion
+
+
+        #region 获取歌曲
+        /// <summary>
+        /// 获取歌曲
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult GetMusics(int page)
+        {
+            List<Music> _musics = new List<Music>();
+            List<vMusicList> musics = new List<vMusicList>();
+
+            _musics = db.Musics.OrderByDescending(m => m.Time).Skip(page * 10).Take(10).ToList();
+            foreach (var music in _musics)
+            {
+                musics.Add(new vMusicList(music));
+            }
+            return Json(musics);
+        } 
+        #endregion
+
+        public ActionResult Music(int id)
+        {
+            Music music = new Music();
+            music = db.Musics.Find(id);
+
+            return View();
+        }
     }
 }

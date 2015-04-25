@@ -45,6 +45,28 @@ function LoadActions() {
     }
 }
 
+//加载歌曲
+function LoadMusics() {
+    if (lock) {
+        return;
+    }
+    else {
+        $.post("/Music/GetMusics", { "page": page }).done(function (data) {
+            var str = "";
+            for (var i = 0; i < data.length; i++) {
+                str += "<div><span><a href='/Music/Show/" + data[i].ID + "'>" + data[i].Title + "</a></span></div>";
+            }
+            $(".musicLst").append(str);
+
+            if (data.length == 10) {
+                lock = false;
+                page++;
+            }
+        });
+    }
+}
+
+
 function Load() {
 
     if ($(".concertLst").length > 0) {
@@ -52,6 +74,10 @@ function Load() {
     }
     if ($(".actionLst").length > 0) {
         LoadActions();
+    }
+
+    if ($(".musicLst").length > 0) {
+        LoadMusics();
     }
 }
 

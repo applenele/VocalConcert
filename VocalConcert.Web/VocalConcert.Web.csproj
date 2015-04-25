@@ -183,6 +183,8 @@
     <Compile Include="Models\ViewModel\vGroup.cs" />
     <Compile Include="Models\ViewModel\vGroupAdd.cs" />
     <Compile Include="Models\ViewModel\vGroupList.cs" />
+    <Compile Include="Models\ViewModel\vMusic.cs" />
+    <Compile Include="Models\ViewModel\vMusicList.cs" />
     <Compile Include="Models\ViewModel\vUser.cs" />
     <Compile Include="Models\ViewModel\vUserEdit.cs" />
     <Compile Include="Models\ViewModel\vUserLogin.cs" />
