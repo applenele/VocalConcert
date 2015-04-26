@@ -7,15 +7,7 @@ using VocalConcert.Entity;
 
 namespace VocalConcert.Web.Models.ViewModel
 {
-
-    public enum ProductStatus
-    {
-        未开始,
-        进行中,
-        已结束
-    }
-
-    public class vProductList
+    public class vProduct
     {
         /// <summary>
         /// 优惠产品ID
@@ -73,9 +65,9 @@ namespace VocalConcert.Web.Models.ViewModel
         [Display(Name = "城市")]
         public string City { get; set; }
 
-        public vProductList() { }
+        public vProduct() { }
 
-        public vProductList(Product product)
+        public vProduct(Product product)
         {
             this.ID = product.ID;
             this.Title = product.Title;

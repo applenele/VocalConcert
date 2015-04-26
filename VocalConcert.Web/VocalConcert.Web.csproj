@@ -188,6 +188,7 @@
     <Compile Include="Models\ViewModel\vGroupList.cs" />
     <Compile Include="Models\ViewModel\vMusic.cs" />
     <Compile Include="Models\ViewModel\vMusicList.cs" />
+    <Compile Include="Models\ViewModel\vProduct.cs" />
     <Compile Include="Models\ViewModel\vProductList.cs" />
     <Compile Include="Models\ViewModel\vUser.cs" />
     <Compile Include="Models\ViewModel\vUserEdit.cs" />

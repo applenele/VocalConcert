@@ -106,7 +106,7 @@ namespace VocalConcert.Web.Controllers
         {
             Product product = new Product();
             product = db.Products.Find(id);
-            return View(product);
+            return View(new vProduct(product));
         } 
         #endregion
 

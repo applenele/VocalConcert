@@ -78,8 +78,20 @@ function LoadProducts() {
         lock = true;
         $.post("/Product/GetProducts", { "page": page }).done(function (data) {
             var str = "";
+            var st = "";
             for (var i = 0; i < data.length; i++) {
-                str += "<div><span><img src='/Common/Icon/"+data[i].ID+"' style='width:50px;heigth:50px;' /></span><span><a href='/Product/Show/" + data[i].ID + "'>" + data[i].Title + "</a></span><span>@<a href='/User/" + data[i].UserID + "'>" + data[i].User.Username + "</a></span><span>" + data[i].Time + "</span></div>";
+                if (data[i].StatusAsInt == 0)
+                {
+                      st="<span style='background:green'>即将进行</span>"
+                }
+                if (data[i].StatusAsInt == 1) {
+                    st = "<span style='background:red'>正在进行</span>"
+                }
+                if (data[i].StatusAsInt == 2) {
+                    st = "<span style='background:blue'>已经结束</span>"
+                }
+                str += "<div><div style='float:left'><img src='/Common/Icon/" + data[i].ID + "' style='width:60px;heigth:60px;' /></div><div style='float:left;margin-left:10px;'><a href='/Product/Show/" + data[i].ID + "'>" + data[i].Title + "</a></span><span>@<a href='/User/" + data[i].UserID + "'>" + data[i].User.Username + "</a></span><br />" + st + "<span>活动时间：" + data[i].Begin + "-" + data[i].End + "</div></div>";
+                str += "<div class='clr'></div>";
             }
             $(".productLst").append(str);
 

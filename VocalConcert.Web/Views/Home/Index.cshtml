@@ -51,4 +51,12 @@
             <div><a href="/Music/Show/@music.ID">@music.Title</a></div>
         }
     </div>
+
+    <div>
+        最新优惠产品：
+        @foreach (var product in ViewBag.Products as List<vProduct>)
+        {
+            <div><a href="/Product/Show/@product.ID">@product.Title</a> <span>@product.Status</span>@@<a href="/User/@product.UserID">@product.User.Username</a>  @product.Time</div>
+        }
+    </div>
 </div>

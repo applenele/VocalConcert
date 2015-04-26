@@ -23,7 +23,9 @@ namespace VocalConcert.Web.Controllers
             List<Music> _musics = new List<Music>();
             List<vMusic> musics1 = new List<vMusic>();
             List<vMusic> musics2 = new List<vMusic>();
-            // List<GroupMember> _gms = new List<GroupMember>();
+
+            List<Product> _products = new List<Product>();
+            List<vProduct> products = new List<vProduct>();
 
             //最新10条歌友会
             _groups = db.Groups.OrderByDescending(g => g.Time).Take(10).ToList();
@@ -76,6 +78,13 @@ namespace VocalConcert.Web.Controllers
             }
             musics2 = musics2.OrderByDescending(m => m.Score).Take(10).ToList();
 
+            ///最新10个优惠产品
+            _products = db.Products.OrderByDescending(p => p.Time).Take(10).ToList();
+            foreach (var product in _products)
+            {
+                products.Add(new vProduct(product));
+            }
+
             ViewBag.Groups = groups;
             ViewBag.Groups2 = groups2;
             ViewBag.Actions = actions1;
@@ -83,6 +92,8 @@ namespace VocalConcert.Web.Controllers
 
             ViewBag.Musics1 = musics1;
             ViewBag.Musics2 = musics2;
+
+            ViewBag.Products = products;
             return View();
         }
 
