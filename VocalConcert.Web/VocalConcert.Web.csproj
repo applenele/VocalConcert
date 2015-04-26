@@ -287,10 +287,10 @@
     <Content Include="Views\Music\Index.cshtml" />
     <Content Include="Views\Music\Upload.cshtml" />
     <Content Include="Views\Music\Show.cshtml" />
-    <Content Include="Views\Music\Edit.cshtml" />
     <Content Include="Views\Product\Add.cshtml" />
     <Content Include="Views\League\Index.cshtml" />
     <Content Include="Views\Product\Show.cshtml" />
+    <Content Include="Views\Music\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

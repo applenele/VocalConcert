@@ -56,7 +56,7 @@ function LoadMusics() {
         $.post("/Music/GetMusics", { "page": page }).done(function (data) {
             var str = "";
             for (var i = 0; i < data.length; i++) {
-                str += "<div><span><a href='/Music/Show/" + data[i].ID + "'>" + data[i].Title + "</a></span><span>" + data[i].Score + "</span><span>@<a href='/User/" + data[i].UserID + "'>" + data[i].Username + "</a></span><span>" + data[i].Time + "</span></div>";
+                str += "<div><span><a href='/Music/Show/" + data[i].ID + "'>" + data[i].Title + "</a></span>  <span>分数：" + data[i].Score + "</span>  <span>@<a href='/User/" + data[i].UserID + "'>" + data[i].Username + "</a></span><span>" + data[i].Time + "</span></div>";
             }
             $(".musicLst").append(str);
 
