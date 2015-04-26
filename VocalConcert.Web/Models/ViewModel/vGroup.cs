@@ -32,10 +32,14 @@ namespace VocalConcert.Web.Models.ViewModel
 
         public List<vUser> Attenders { get; set; }
 
+        /// <summary>
+        /// 当前用户是否存在
+        /// </summary>
+        public bool CurrentIsExist { get; set; }
 
         public vGroup() { }
 
-        public vGroup(Group group)
+        public vGroup(Group group,int CurrentUserID)
         {
 
             DB db=new DB();
@@ -54,8 +58,30 @@ namespace VocalConcert.Web.Models.ViewModel
             {
                 Attenders.Add(new vUser(gm.User));
             }
+
+            this.CurrentIsExist = (db.GroupMembers.Where(gm => gm.GroupID == group.ID && gm.UserID == CurrentUserID).SingleOrDefault() == null) ? false : true;
         }
 
+        public vGroup(Group group)
+        {
+
+            DB db = new DB();
+            this.ID = group.ID;
+            this.Title = group.Title;
+            this.Description = group.Description;
+            this.UserID = group.UserID;
+            this.User = new vUser(db.Users.Find(group.UserID));
+            this.Time = group.Time.ToString();
+            this.City = group.City;
+            List<GroupMember> gms = new List<GroupMember>();
+            Attenders = new List<vUser>();
+            gms = db.GroupMembers.Where(gm => gm.GroupID == group.ID).ToList();
+
+            foreach (var gm in gms)
+            {
+                Attenders.Add(new vUser(gm.User));
+            }
+        }
 
     }
 }

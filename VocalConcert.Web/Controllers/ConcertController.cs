@@ -121,8 +121,7 @@ namespace VocalConcert.Web.Controllers
         {
             Group group = new Group();
             group = db.Groups.Find(id);
-            ViewBag.Group = new vGroup(group);
-            return View(new vGroup(group));
+            return View(new vGroup(group, CurrentUser==null?0:CurrentUser.ID));
         }
         #endregion
 
@@ -172,6 +171,7 @@ namespace VocalConcert.Web.Controllers
         #endregion
 
 
+        #region 加入歌友会
         /// <summary>
         ///  加入歌友会
         /// </summary>
@@ -205,6 +205,25 @@ namespace VocalConcert.Web.Controllers
             {
                 return Msg("你已经是该歌友会的成员！");
             }
-        }
+        } 
+        #endregion
+
+
+        #region 退出歌友会
+        /// <summary>
+        /// 退出歌友会
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <param name="uid"></param>
+        /// <returns></returns>
+        public ActionResult Quit(int gid, int uid)
+        {
+            GroupMember gm = new GroupMember();
+            gm = db.GroupMembers.Where(_gm => _gm.GroupID == gid && _gm.UserID == uid).SingleOrDefault();
+            db.GroupMembers.Remove(gm);
+            db.SaveChanges();
+            return Redirect("/Concert/Show/" + gid);
+        } 
+        #endregion
     }
 }

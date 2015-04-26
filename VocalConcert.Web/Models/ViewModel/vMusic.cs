@@ -39,6 +39,8 @@ namespace VocalConcert.Web.Models.ViewModel
         [Display(Name="分数")]
         public int Score { get; set; }
 
+       
+
         public vMusic() { }
 
         public vMusic(Music music)
@@ -59,7 +61,6 @@ namespace VocalConcert.Web.Models.ViewModel
             {
                 this.Score += comment.Score;
             }
-
         }
     }
 }

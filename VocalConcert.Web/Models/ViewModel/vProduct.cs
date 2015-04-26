@@ -33,6 +33,7 @@ namespace VocalConcert.Web.Models.ViewModel
         /// </summary>
         public int StatusAsInt { get; set; }
 
+
         public ProductStatus Status
         {
             get { return (ProductStatus)StatusAsInt; }

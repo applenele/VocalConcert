@@ -15,7 +15,7 @@
         <dd>
             <img src="/Common/ShowGroupIcon/@Model.ID" width="50" height="50" alt="Alternate Text" />
         </dd>
-        
+
         <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>
@@ -33,7 +33,7 @@
         </dd>
 
         <dt>
-           发起人
+            发起人
         </dt>
 
         <dd>
@@ -55,14 +55,14 @@
         <dd>
             @Html.DisplayFor(model => model.City)
         </dd>
-        
+
     </dl>
 
     <p>
         成员:
         @foreach (var user in Model.Attenders)
-        { 
-           <div style="float:left;margin-right:20px;"><a href="/User/@user.ID">@user.Username</a> </div>
+        {
+            <div style="float:left;margin-right:20px;"><a href="/User/@user.ID">@user.Username</a> </div>
         }
     </p>
     <div class="clr"></div>
@@ -73,11 +73,20 @@
             {
                 <span>@Html.ActionLink("修改", "Edit", new { id = Model.ID })</span>
             }
-        }
-        
 
-        <a href="/Concert/Attend/@Model.ID">加入</a>  
-        <a href="/Action/Add/@Model.ID">发起活动</a>
+
+        }
+
+        @if (@Model.CurrentIsExist == true)
+        {
+            <a href="/Concert/Quit?gid=@Model.ID&uid=@ViewBag.CurrentUser.ID">退出该歌友会</a>
+        }
+        else
+        {
+            <a href="/Concert/Attend/@Model.ID">加入</a>
+            <a href="/Action/Add/@Model.ID">发起活动</a>
+        }
+
     </p>
 </div>
 
