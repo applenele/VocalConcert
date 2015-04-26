@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace VocalConcert.Web.Controllers
 {
-    public class LeagueController : Controller
+    public class LeagueController : BaseController
     {
         // GET: League
         public ActionResult Index()

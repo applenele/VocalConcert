@@ -23,13 +23,13 @@ namespace VocalConcert.Web.Controllers
         /// <param name="mid"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult> Add(string content, int mid)
+        public async Task<ActionResult> Add(string content, int mid,int score)
         {
             if (CurrentUser == null)
             {
                 return Content("nouser");
             }
-            Comment comment = new Comment { UserID = CurrentUser.ID, MusicID = mid, Content = content, Time = DateTime.Now };
+            Comment comment = new Comment { UserID = CurrentUser.ID, MusicID = mid, Content = content, Time = DateTime.Now,Score=score };
 
             db.Comments.Add(comment);
             int result = await db.SaveChangesAsync();

@@ -60,6 +60,15 @@
         </dd>
 
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Score)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Score)
+        </dd>
+
+
     </dl>
 
     <p>
@@ -70,6 +79,8 @@
                 <span>@Html.ActionLink("修改", "Edit", new { id = Model.ID })</span>
             }
         }
+        
+        <a href="/Music/Download/@Model.ID">下载试听</a>
     </p>
 </div>
 
@@ -87,6 +98,7 @@
                         </div>
                     </td>
                     <td class="reply-right">
+                        分数:@comment.Score <br />
                         @comment.Content  <br />
                         @comment.Time
                     </td>
@@ -96,6 +108,7 @@
     </div>
     <div style="margin-top:30px;" class="jumbotron">
         <p><textarea cols="80" rows="5" id="comment_content"></textarea></p>
+        <p><input type="text" name="name" id="score" value="0" />(1-10)</p>
         <p><input type="button" id="btnSubReplyMusic" class="btn btn-default" value="提交评论" /></p>
     </div>
 </div>

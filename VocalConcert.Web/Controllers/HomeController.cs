@@ -19,6 +19,10 @@ namespace VocalConcert.Web.Controllers
             List<Entity.Action> _actions = new List<Entity.Action>();
             List<vAction> actions1 = new List<vAction>();
             List<vAction> actions2 = new List<vAction>();
+
+            List<Music> _musics = new List<Music>();
+            List<vMusic> musics1 = new List<vMusic>();
+            List<vMusic> musics2 = new List<vMusic>();
             // List<GroupMember> _gms = new List<GroupMember>();
 
             //最新10条歌友会
@@ -56,10 +60,29 @@ namespace VocalConcert.Web.Controllers
             {
                 actions2.Add(new vAction(aa.action));
             }
+
+
+            //最新10音乐
+            _musics = db.Musics.OrderByDescending(m => m.Time).Take(10).ToList();
+            foreach (var music in _musics)
+            {
+                musics1.Add(new vMusic(music));
+            }
+            //评分最高10音乐
+            _musics = db.Musics.OrderByDescending(m => m.Time).ToList();
+            foreach (var music in _musics)
+            {
+                musics2.Add(new vMusic(music));
+            }
+            musics2 = musics2.OrderByDescending(m => m.Score).Take(10).ToList();
+
             ViewBag.Groups = groups;
             ViewBag.Groups2 = groups2;
             ViewBag.Actions = actions1;
             ViewBag.Actions2 = actions2;
+
+            ViewBag.Musics1 = musics1;
+            ViewBag.Musics2 = musics2;
             return View();
         }
 

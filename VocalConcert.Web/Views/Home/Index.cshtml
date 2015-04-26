@@ -35,4 +35,20 @@
             <div><a href="/Action/Show/@action.ID">@action.Title</a></div>
         }
     </div>
+
+
+    <div>
+        热门音乐：
+        @foreach (var music in ViewBag.Musics2 as List<vMusic>)
+        {
+            <div><a href="/Music/Show/@music.ID">@music.Title</a> 分数：@music.Score @@<a href="/User/@music.UserID">@music.User.Username</a> <span>@music.Time</span></div>
+        }
+    </div>
+    <div>
+        最新音乐：
+        @foreach (var music in ViewBag.Musics1 as List<vMusic>)
+        {
+            <div><a href="/Music/Show/@music.ID">@music.Title</a></div>
+        }
+    </div>
 </div>

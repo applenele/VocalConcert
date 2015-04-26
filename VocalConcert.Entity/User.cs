@@ -69,5 +69,6 @@ namespace VocalConcert.Entity
         public string Phone { get; set; }
 
         public virtual ICollection<Group> Groups { get; set;}
+
     }
 }

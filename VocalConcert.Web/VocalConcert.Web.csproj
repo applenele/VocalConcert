@@ -165,10 +165,12 @@
     <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\ConcertController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeagueController.cs" />
     <Compile Include="Controllers\MusicController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -186,6 +188,7 @@
     <Compile Include="Models\ViewModel\vGroupList.cs" />
     <Compile Include="Models\ViewModel\vMusic.cs" />
     <Compile Include="Models\ViewModel\vMusicList.cs" />
+    <Compile Include="Models\ViewModel\vProductList.cs" />
     <Compile Include="Models\ViewModel\vUser.cs" />
     <Compile Include="Models\ViewModel\vUserEdit.cs" />
     <Compile Include="Models\ViewModel\vUserLogin.cs" />
@@ -284,13 +287,16 @@
     <Content Include="Views\Music\Upload.cshtml" />
     <Content Include="Views\Music\Show.cshtml" />
     <Content Include="Views\Music\Edit.cshtml" />
+    <Content Include="Views\Product\Add.cshtml" />
+    <Content Include="Views\League\Index.cshtml" />
+    <Content Include="Views\Product\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Upload\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Comment\" />
-    <Folder Include="Views\League\" />
+    <Folder Include="Views\Common\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -30,6 +30,7 @@ function LoadActions() {
         return;
     }
     else {
+        lock = true;
         $.post("/Action/GetActions", { "page": page }).done(function (data) {
             var str = "";
             for (var i = 0; i < data.length; i++) {
@@ -51,10 +52,11 @@ function LoadMusics() {
         return;
     }
     else {
+        lock = true;
         $.post("/Music/GetMusics", { "page": page }).done(function (data) {
             var str = "";
             for (var i = 0; i < data.length; i++) {
-                str += "<div><span><a href='/Music/Show/" + data[i].ID + "'>" + data[i].Title + "</a></span></div>";
+                str += "<div><span><a href='/Music/Show/" + data[i].ID + "'>" + data[i].Title + "</a></span><span>" + data[i].Score + "</span><span>@<a href='/User/"+data[i].UserID+"'>" + data[i].Username + "</a></span><span>"+data[i].Time+"</span></div>";
             }
             $(".musicLst").append(str);
 
@@ -67,6 +69,28 @@ function LoadMusics() {
 }
 
 
+//加载优惠产品
+function LoadProducts() {
+    if (lock) {
+        return;
+    }
+    else {
+        lock = true;
+        $.post("/Product/GetProducts", { "page": page }).done(function (data) {
+            var str = "";
+            for (var i = 0; i < data.length; i++) {
+                str += "<div><span><img src='/Common/Icon/"+data[i].ID+"' style='width:50px;heigth:50px;' /></span><span><a href='/Product/Show/" + data[i].ID + "'>" + data[i].Title + "</a></span><span>@<a href='/User/" + data[i].UserID + "'>" + data[i].User.Username + "</a></span><span>" + data[i].Time + "</span></div>";
+            }
+            $(".productLst").append(str);
+
+            if (data.length == 10) {
+                lock = false;
+                page++;
+            }
+        });
+    }
+}
+
 function Load() {
 
     if ($(".concertLst").length > 0) {
@@ -78,6 +102,10 @@ function Load() {
 
     if ($(".musicLst").length > 0) {
         LoadMusics();
+    }
+
+    if ($(".productLst").length > 0) {
+        LoadProducts();
     }
 }
 
@@ -111,8 +139,9 @@ $(document).ready(function () {
 
     $("#btnSubReplyMusic").click(function () {
         var content = $("#comment_content").val();
+        var score = $("#score").val();
         var mid = $("#mid").val();
-        $.post("/Comment/Add", { "content": content, "mid": mid }).done(function (data) {
+        $.post("/Comment/Add", { "content": content, "mid": mid,"score":score }).done(function (data) {
             if (data == "nouser") {
                 alert("请先登录，在进行评论！");
             }

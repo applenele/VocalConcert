@@ -36,6 +36,9 @@ namespace VocalConcert.Web.Models.ViewModel
 
         public List<Comment> Commments { get; set; }
 
+        [Display(Name="分数")]
+        public int Score { get; set; }
+
         public vMusic() { }
 
         public vMusic(Music music)
@@ -50,7 +53,13 @@ namespace VocalConcert.Web.Models.ViewModel
             this.RecommendMark = music.RecommendMark;
             this.Time = Helper.Time.ToTimeTip(music.Time);
             this.Type = music.Type.ToString();
-            this.Commments = music.Comments.ToList();
+            this.Commments = music.Comments.OrderByDescending(m=>m.Time).ToList();
+
+            foreach (var comment in Commments)
+            {
+                this.Score += comment.Score;
+            }
+
         }
     }
 }

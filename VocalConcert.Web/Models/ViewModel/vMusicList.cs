@@ -14,11 +14,15 @@ namespace VocalConcert.Web.Models.ViewModel
 
         public string Description { get; set; }
 
+        public int UserID { get; set; }
+
         public string Username { get; set; }
 
         public bool RecommendMark { get; set; }
 
         public string Time { get; set; }
+
+        public int Score { get; set; }
 
         public vMusicList() { }
 
@@ -30,6 +34,11 @@ namespace VocalConcert.Web.Models.ViewModel
             this.Username = music.User.Username;
             this.RecommendMark = music.RecommendMark;
             this.Time = Helper.Time.ToTimeTip(music.Time);
+            this.UserID = music.UserID;
+            foreach (var comment in music.Comments)
+            {
+                this.Score += comment.Score;
+            }
         }
     }
 }

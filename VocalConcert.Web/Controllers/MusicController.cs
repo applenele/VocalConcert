@@ -45,6 +45,7 @@ namespace VocalConcert.Web.Controllers
         [Authorize]
         public ActionResult Upload(Music model, HttpPostedFileBase file)
         {
+          
             List<SelectListItem> typeList = new List<SelectListItem>();
             typeList.Add(new SelectListItem { Text = MusicType.Cover.ToString(), Value = "0", Selected = false });
             typeList.Add(new SelectListItem { Text = MusicType.Instrument.ToString(), Value = "1", Selected = false });
@@ -96,11 +97,12 @@ namespace VocalConcert.Web.Controllers
             List<Music> _musics = new List<Music>();
             List<vMusicList> musics = new List<vMusicList>();
 
-            _musics = db.Musics.OrderByDescending(m => m.Time).Skip(page * 10).Take(10).ToList();
+            _musics = db.Musics.OrderByDescending(m =>m.Time).ToList();
             foreach (var music in _musics)
             {
                 musics.Add(new vMusicList(music));
             }
+            musics = musics.OrderByDescending(m => m.Score).Skip(page * 10).Take(10).ToList();
             return Json(musics);
         } 
         #endregion
@@ -131,5 +133,21 @@ namespace VocalConcert.Web.Controllers
             music = db.Musics.Find(id);
             return View(music);
         }
+
+
+        #region 下载
+        /// <summary>
+        /// 下载
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Download(int id)
+        {
+            Music music = new Music();
+            music = db.Musics.Find(id);
+            var path = Server.MapPath("~/Upload/" + music.Path);
+            return File(path, "1", Url.Encode(music.Path));
+        } 
+        #endregion
     }
 }
