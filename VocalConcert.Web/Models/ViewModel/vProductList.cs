@@ -27,7 +27,7 @@ namespace VocalConcert.Web.Models.ViewModel
         /// </summary>
         public int UserID { get; set; }
 
-        public virtual User User { get; set; }
+        public string Username { get; set; }
 
         /// <summary>
         /// 优惠产品标题
@@ -81,7 +81,7 @@ namespace VocalConcert.Web.Models.ViewModel
             this.Title = product.Title;
             this.Description = product.Description;
             this.UserID = product.UserID;
-            this.User = product.User;
+            this.Username = product.User.Username;
             this.Begin = product.Begin.ToString();
             this.End = product.End.ToString();
             this.Time = Helper.Time.ToTimeTip(product.Time);

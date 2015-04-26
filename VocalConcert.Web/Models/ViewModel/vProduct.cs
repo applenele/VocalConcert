@@ -19,7 +19,7 @@ namespace VocalConcert.Web.Models.ViewModel
         /// </summary>
         public int UserID { get; set; }
 
-        public virtual User User { get; set; }
+        public User User { get; set; }
 
         /// <summary>
         /// 优惠产品标题

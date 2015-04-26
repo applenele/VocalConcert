@@ -31,9 +31,10 @@
     }
     
     <div>
+        创建的歌友会：
         @foreach (var group in user.Groups)
         { 
-          <span><a href="#">@group.Title</a></span>
+          <span><a href="/Group/Show/@group.ID">@group.Title</a></span>
         }
     </div>
 </div>

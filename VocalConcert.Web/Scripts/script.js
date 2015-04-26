@@ -12,7 +12,7 @@ function LoadConcerts() {
         $.post("/Concert/GetConcerts", { "page": page }).done(function (data) {
             var str = "";
             for (var i = 0; i < data.length; i++) {
-                str += "<div><span><a href='/Concert/Show/" + data[i].ID + "'>" + data[i].Title + "</a></span></div>";
+                str += "<div><span><a href='/Concert/Show/" + data[i].ID + "'>" + data[i].Title + "</a> @<a href='/User/" + data[i].UserID + "'>" + data[i].Username + "</a> "+data[i].Time+"</span></div>";
             }
             $(".concertLst").append(str);
 
@@ -56,7 +56,7 @@ function LoadMusics() {
         $.post("/Music/GetMusics", { "page": page }).done(function (data) {
             var str = "";
             for (var i = 0; i < data.length; i++) {
-                str += "<div><span><a href='/Music/Show/" + data[i].ID + "'>" + data[i].Title + "</a></span><span>" + data[i].Score + "</span><span>@<a href='/User/"+data[i].UserID+"'>" + data[i].Username + "</a></span><span>"+data[i].Time+"</span></div>";
+                str += "<div><span><a href='/Music/Show/" + data[i].ID + "'>" + data[i].Title + "</a></span><span>" + data[i].Score + "</span><span>@<a href='/User/" + data[i].UserID + "'>" + data[i].Username + "</a></span><span>" + data[i].Time + "</span></div>";
             }
             $(".musicLst").append(str);
 
@@ -80,9 +80,8 @@ function LoadProducts() {
             var str = "";
             var st = "";
             for (var i = 0; i < data.length; i++) {
-                if (data[i].StatusAsInt == 0)
-                {
-                      st="<span style='background:green'>即将进行</span>"
+                if (data[i].StatusAsInt == 0) {
+                    st = "<span style='background:green'>即将进行</span>"
                 }
                 if (data[i].StatusAsInt == 1) {
                     st = "<span style='background:red'>正在进行</span>"
@@ -90,7 +89,7 @@ function LoadProducts() {
                 if (data[i].StatusAsInt == 2) {
                     st = "<span style='background:blue'>已经结束</span>"
                 }
-                str += "<div><div style='float:left'><img src='/Common/Icon/" + data[i].ID + "' style='width:60px;heigth:60px;' /></div><div style='float:left;margin-left:10px;'><a href='/Product/Show/" + data[i].ID + "'>" + data[i].Title + "</a></span><span>@<a href='/User/" + data[i].UserID + "'>" + data[i].User.Username + "</a></span><br />" + st + "<span>活动时间：" + data[i].Begin + "-" + data[i].End + "</div></div>";
+                str += "<div><div style='float:left'><img src='/Common/Icon/" + data[i].ID + "' style='width:60px;heigth:60px;' /></div><div style='float:left;margin-left:10px;'><a href='/Product/Show/" + data[i].ID + "'>" + data[i].Title + "</a></span><span>@<a href='/User/" + data[i].UserID + "'>" + data[i].Username + "</a></span><br />" + st + "<span>活动时间：" + data[i].Begin + "-" + data[i].End + "</div></div>";
                 str += "<div class='clr'></div>";
             }
             $(".productLst").append(str);
@@ -153,7 +152,7 @@ $(document).ready(function () {
         var content = $("#comment_content").val();
         var score = $("#score").val();
         var mid = $("#mid").val();
-        $.post("/Comment/Add", { "content": content, "mid": mid,"score":score }).done(function (data) {
+        $.post("/Comment/Add", { "content": content, "mid": mid, "score": score }).done(function (data) {
             if (data == "nouser") {
                 alert("请先登录，在进行评论！");
             }
