@@ -40,6 +40,10 @@ namespace VocalConcert.Web.Models.ViewModel
         [Display(Name="备注")]
         public string  Hint { get; set; }
 
+        /// <summary>
+        /// 当前用户是不是参加该活动
+        /// </summary>
+        public bool CurrentIsExist { get; set; }
 
         public List<vUser> Users { get; set; }
 
@@ -68,6 +72,32 @@ namespace VocalConcert.Web.Models.ViewModel
                 Users.Add(new vUser(aa.User));
             }
             
+        }
+
+
+        public vAction(Entity.Action action,int CurrentUserID)
+        {
+            DB db = new DB();
+            this.ID = action.ID;
+            this.GroupID = action.GroupID;
+            this.Group = action.Group;
+            this.UserID = action.UserID;
+            this.User = action.User;
+            this.Title = action.Title;
+            this.Description = action.Description;
+            this.Begin = action.Begin.ToString();
+            this.End = action.End.ToString();
+            this.Address = action.Address;
+            this.Hint = action.Hint;
+            this.Time = action.Time.ToString();
+            List<ActionAttender> aas = new List<ActionAttender>();
+            Users = new List<vUser>();
+            aas = db.ActionAttenders.Where(aa => aa.ActionID == action.ID).ToList();
+            foreach (var aa in aas)
+            {
+                Users.Add(new vUser(aa.User));
+            }
+            this.CurrentIsExist = (db.ActionAttenders.Where(aa => aa.ActionID == action.ID && aa.UserID == CurrentUserID).SingleOrDefault() == null) ? false : true;
         }
     }
 }

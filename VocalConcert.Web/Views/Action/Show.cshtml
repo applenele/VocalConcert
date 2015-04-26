@@ -102,7 +102,17 @@
                 <span>@Html.ActionLink("修改", "Edit", new { id = Model.ID })</span>
             }
         }
-        <a href="/Action/Attend/@Model.ID">参与</a>
+        
+        @if (@Model.CurrentIsExist == true)
+        {
+            <a href="/Action/Quit?aid=@Model.ID&uid=@ViewBag.CurrentUser.ID">退出该活动</a>
+        }
+        else
+        {
+            <a href="/Action/Attend/@Model.ID">参与</a>
+        }
+
+        
     </p>
 </div>
 

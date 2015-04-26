@@ -100,7 +100,7 @@ namespace VocalConcert.Web.Controllers
         {
             Entity.Action action = new Entity.Action();
             action = db.Actions.Find(id);
-            return View(new vAction(action));
+            return View(new vAction(action,CurrentUser==null?0:CurrentUser.ID));
         } 
         #endregion
 
@@ -187,6 +187,24 @@ namespace VocalConcert.Web.Controllers
                 ModelState.AddModelError("", "修改的活动的信息不正确！请重试！");
             }
             return View();
+        } 
+        #endregion
+
+
+        #region 当前用户退出活动
+        /// <summary>
+        /// 当前用户退出活动
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize]
+        public ActionResult Quit(int aid,int uid)
+        {
+            ActionAttender aa = new ActionAttender();
+            aa = db.ActionAttenders.Where(_aa => _aa.ActionID == aid && _aa.UserID == uid).SingleOrDefault();
+            db.ActionAttenders.Remove(aa);
+            db.SaveChanges();
+            return Redirect("/Action/Show/"+aid);
         } 
         #endregion
     }
