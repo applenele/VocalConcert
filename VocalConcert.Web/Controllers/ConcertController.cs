@@ -37,30 +37,43 @@ namespace VocalConcert.Web.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult> Add(vGroupAdd model)
+        public async Task<ActionResult> Add(vGroupAdd model,HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                Group group = new Group();
-                group.Title = model.Title;
-                group.Description = model.Description;
-                group.City = model.City;
-                group.Time = DateTime.Now;
-                group.UserID = CurrentUser.ID;
-                db.Groups.Add(group);
-                int result = await db.SaveChangesAsync();
-                if (result > 0)
+                if (file != null)
                 {
-                    int groupId = group.ID;
-                    int userId = CurrentUser.ID;
-                    GroupMember gm = new GroupMember { GroupID = groupId, UserID = userId, Time = DateTime.Now };
-                    db.GroupMembers.Add(gm);
-                    db.SaveChanges();
-                    return RedirectToAction("Index", "Concert");
+                    Group group = new Group();
+                    System.IO.Stream stream = file.InputStream;
+                    byte[] buffer = new byte[stream.Length];
+                    stream.Read(buffer, 0, (int)stream.Length);
+                    stream.Close();
+                   
+                    group.Title = model.Title;
+                    group.Description = model.Description;
+                    group.City = model.City;
+                    group.Time = DateTime.Now;
+                    group.UserID = CurrentUser.ID;
+                    group.Icon = buffer;
+                    db.Groups.Add(group);
+                    int result = await db.SaveChangesAsync();
+                    if (result > 0)
+                    {
+                        int groupId = group.ID;
+                        int userId = CurrentUser.ID;
+                        GroupMember gm = new GroupMember { GroupID = groupId, UserID = userId, Time = DateTime.Now };
+                        db.GroupMembers.Add(gm);
+                        db.SaveChanges();
+                        return RedirectToAction("Index", "Concert");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "增加歌友会失败，请重新发起!");
+                    }
                 }
                 else
                 {
-                    ModelState.AddModelError("", "增加歌友会失败，请重新发起!");
+                    ModelState.AddModelError("","图标文件不能为空！");
                 }
             }
             else

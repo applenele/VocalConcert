@@ -28,5 +28,19 @@ namespace VocalConcert.Web.Controllers
             return File(product.Icon, "image/jpg");
         }
         #endregion
+
+        #region 显示歌友会图标
+        /// <summary>
+        /// 显示歌友会图标
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult ShowGroupIcon(int id)
+        {
+            Group group = new Group();
+            group = db.Groups.Find(id);
+            return File(group.Icon, "image/jpg");
+        } 
+        #endregion
     }
 }
