@@ -207,5 +207,29 @@ namespace VocalConcert.Web.Controllers
             return Redirect("/Action/Show/"+aid);
         } 
         #endregion
+
+
+        #region 删除活动 
+        /// <summary>
+        /// 删除活动
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Delete(int id)
+        {
+            Entity.Action action = new Entity.Action();
+            action = db.Actions.Find(id);
+            db.Actions.Remove(action);
+            int result = db.SaveChanges();
+            if (result > 0)
+            {
+                return Redirect("/Action/Index");
+            }
+            else
+            {
+                return Msg("删除活动失败！请重试!");
+            }
+        } 
+        #endregion
     }
 }

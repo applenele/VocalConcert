@@ -37,7 +37,7 @@ namespace VocalConcert.Web.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult> Add(vGroupAdd model,HttpPostedFileBase file)
+        public async Task<ActionResult> Add(vGroupAdd model, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
@@ -48,7 +48,7 @@ namespace VocalConcert.Web.Controllers
                     byte[] buffer = new byte[stream.Length];
                     stream.Read(buffer, 0, (int)stream.Length);
                     stream.Close();
-                   
+
                     group.Title = model.Title;
                     group.Description = model.Description;
                     group.City = model.City;
@@ -73,7 +73,7 @@ namespace VocalConcert.Web.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("","图标文件不能为空！");
+                    ModelState.AddModelError("", "图标文件不能为空！");
                 }
             }
             else
@@ -121,7 +121,7 @@ namespace VocalConcert.Web.Controllers
         {
             Group group = new Group();
             group = db.Groups.Find(id);
-            return View(new vGroup(group, CurrentUser==null?0:CurrentUser.ID));
+            return View(new vGroup(group, CurrentUser == null ? 0 : CurrentUser.ID));
         }
         #endregion
 
@@ -150,7 +150,7 @@ namespace VocalConcert.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize]
-        public ActionResult Edit(vGroup model,HttpPostedFileBase file)
+        public ActionResult Edit(vGroup model, HttpPostedFileBase file)
         {
             Group group = new Group();
             group = db.Groups.Find(model.ID);
@@ -205,7 +205,7 @@ namespace VocalConcert.Web.Controllers
             {
                 return Msg("你已经是该歌友会的成员！");
             }
-        } 
+        }
         #endregion
 
 
@@ -223,6 +223,30 @@ namespace VocalConcert.Web.Controllers
             db.GroupMembers.Remove(gm);
             db.SaveChanges();
             return Redirect("/Concert/Show/" + gid);
+        }
+        #endregion
+
+
+        #region 删除歌友会
+        /// <summary>
+        /// 删除歌友会
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Delete(int id)
+        {
+            Group group = new Group();
+            group = db.Groups.Find(id);
+            db.Groups.Remove(group);
+            int result = db.SaveChanges();
+            if (result > 0)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return Msg("删除歌友会失败！");
+            }
         } 
         #endregion
     }

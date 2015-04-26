@@ -72,6 +72,7 @@
             if (ViewBag.CurrentUser.ID == Model.UserID)
             {
                 <span>@Html.ActionLink("修改", "Edit", new { id = Model.ID })</span>
+                <span>@Html.ActionLink("删除", "Delete", new { id = Model.ID })</span>
             }
 
 
@@ -80,11 +81,11 @@
         @if (@Model.CurrentIsExist == true)
         {
             <a href="/Concert/Quit?gid=@Model.ID&uid=@ViewBag.CurrentUser.ID">退出该歌友会</a>
+            <a href="/Action/Add/@Model.ID">发起活动</a>
         }
         else
         {
             <a href="/Concert/Attend/@Model.ID">加入</a>
-            <a href="/Action/Add/@Model.ID">发起活动</a>
         }
 
     </p>

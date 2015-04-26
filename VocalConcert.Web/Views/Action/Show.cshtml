@@ -8,9 +8,9 @@
 
 <div class="jumbotron">
     <dl class="dl-horizontal">
-        
 
-       
+
+
 
         <dt>
             @Html.DisplayNameFor(model => model.Title)
@@ -29,7 +29,7 @@
         </dd>
 
         <dt>
-           发起人
+            发起人
         </dt>
 
         <dd>
@@ -100,9 +100,10 @@
             if (ViewBag.CurrentUser.ID == Model.UserID)
             {
                 <span>@Html.ActionLink("修改", "Edit", new { id = Model.ID })</span>
+                <span>@Html.ActionLink("删除", "Delete", new { id = Model.ID })</span>
             }
         }
-        
+
         @if (@Model.CurrentIsExist == true)
         {
             <a href="/Action/Quit?aid=@Model.ID&uid=@ViewBag.CurrentUser.ID">退出该活动</a>
@@ -112,7 +113,7 @@
             <a href="/Action/Attend/@Model.ID">参与</a>
         }
 
-        
+
     </p>
 </div>
 
