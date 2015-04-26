@@ -164,6 +164,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\ConcertController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeagueController.cs" />
@@ -281,11 +282,14 @@
     <Content Include="Views\Action\Edit.cshtml" />
     <Content Include="Views\Music\Index.cshtml" />
     <Content Include="Views\Music\Upload.cshtml" />
+    <Content Include="Views\Music\Show.cshtml" />
+    <Content Include="Views\Music\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Upload\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Comment\" />
     <Folder Include="Views\League\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using VocalConcert.Entity;
@@ -10,10 +11,13 @@ namespace VocalConcert.Web.Models.ViewModel
     {
         public int ID { get; set; }
 
+        [Display(Name="音乐名称")]
         public string Title { get; set; }
 
+        [Display(Name="描述")]
         public string Description { get; set; }
 
+        [Display(Name="歌词")]
         public string Lyric { get; set; }
 
         public string Path { get; set; }
@@ -24,9 +28,13 @@ namespace VocalConcert.Web.Models.ViewModel
 
         public bool RecommendMark { get; set; }
 
+        [Display(Name="上传时间")]
         public string Time { get; set; }
 
+        [Display(Name="音乐类型")]
         public string Type { get; set; }
+
+        public List<Comment> Commments { get; set; }
 
         public vMusic() { }
 
@@ -40,8 +48,9 @@ namespace VocalConcert.Web.Models.ViewModel
             this.UserID = music.UserID;
             this.User = music.User;
             this.RecommendMark = music.RecommendMark;
-            this.Title = Helper.Time.ToTimeTip(music.Time);
+            this.Time = Helper.Time.ToTimeTip(music.Time);
             this.Type = music.Type.ToString();
+            this.Commments = music.Comments.ToList();
         }
     }
 }

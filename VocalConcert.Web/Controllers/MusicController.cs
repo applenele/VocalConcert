@@ -105,12 +105,31 @@ namespace VocalConcert.Web.Controllers
         } 
         #endregion
 
-        public ActionResult Music(int id)
+
+        #region 显示音乐
+        /// <summary>
+        /// 显示音乐
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Show(int id)
         {
             Music music = new Music();
             music = db.Musics.Find(id);
 
-            return View();
+            return View(new vMusic(music));
+        } 
+        #endregion
+
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult Edit(int id)
+        {
+            Music music = new Music();
+            music = db.Musics.Find(id);
+            return View(music);
         }
     }
 }

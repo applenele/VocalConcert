@@ -1,0 +1,101 @@
+﻿@model VocalConcert.Web.Models.ViewModel.vMusic
+
+@{
+    ViewBag.Title = "Show Music";
+}
+
+<h2>展示音乐</h2>
+
+<div class="jumbotron">
+    <input type="hidden" name="name" id="mid" value="@Model.ID" />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lyric)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lyric)
+        </dd>
+
+
+        <dt>
+           上传者：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Username)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+
+    </dl>
+
+    <p>
+        @if (ViewBag.CurrentUser != null)
+        {
+            if (ViewBag.CurrentUser.ID == Model.UserID)
+            {
+                <span>@Html.ActionLink("修改", "Edit", new { id = Model.ID })</span>
+            }
+        }
+    </p>
+</div>
+
+
+<div>
+    <div class="jumbotron">
+        <table border="1" style="width:583px;">
+            @foreach (var comment in Model.Commments)
+            {
+                <tr>
+                    <td class="reply-left">
+                        <div class="reply-user"><a href="/User/Show/@comment.UserID">@comment.User.Username</a></div>
+                        <div class="reply-userphoto">
+                            <img src="~/Content/Images/userphoto.png" width="50" height="50" />
+                        </div>
+                    </td>
+                    <td class="reply-right">
+                        @comment.Content  <br />
+                        @comment.Time
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div style="margin-top:30px;" class="jumbotron">
+        <p><textarea cols="80" rows="5" id="comment_content"></textarea></p>
+        <p><input type="button" id="btnSubReplyMusic" class="btn btn-default" value="提交评论" /></p>
+    </div>
+</div>

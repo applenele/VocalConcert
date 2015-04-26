@@ -109,4 +109,22 @@ $(document).ready(function () {
      });
 
 
+    $("#btnSubReplyMusic").click(function () {
+        var content = $("#comment_content").val();
+        var mid = $("#mid").val();
+        $.post("/Comment/Add", { "content": content, "mid": mid }).done(function (data) {
+            if (data == "nouser") {
+                alert("请先登录，在进行评论！");
+            }
+            else if (data == "ok") {
+                alert("评论成功！");
+                location.reload();
+            }
+            else {
+                alert("评论失败！");
+                //location.reload();
+            }
+        })
+    });
+
 });
