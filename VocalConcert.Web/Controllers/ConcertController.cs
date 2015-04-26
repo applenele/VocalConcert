@@ -151,10 +151,18 @@ namespace VocalConcert.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize]
-        public ActionResult Edit(vGroup model)
+        public ActionResult Edit(vGroup model,HttpPostedFileBase file)
         {
             Group group = new Group();
             group = db.Groups.Find(model.ID);
+            if (file != null)
+            {
+                System.IO.Stream stream = file.InputStream;
+                byte[] buffer = new byte[stream.Length];
+                stream.Read(buffer, 0, (int)stream.Length);
+                stream.Close();
+                group.Icon = buffer;
+            }
             group.Title = model.Title;
             group.Description = model.Description;
             group.City = model.City;

@@ -8,8 +8,8 @@
 <h2>歌友会修改</h2>
 
 <div class="jumbotron">
-    @using (Html.BeginForm())
-    {
+  @using (Html.BeginForm(Html.BeginForm("Edit", "Concert", FormMethod.Post, new { enctype = "multipart/form-data" })))
+  {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
@@ -29,6 +29,11 @@
                     @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                 </div>
+            </div>
+
+            <div style="margin-top:20px;">
+                请选择图标:
+                <input type="file" name="file" />
             </div>
 
             <div class="form-group">
