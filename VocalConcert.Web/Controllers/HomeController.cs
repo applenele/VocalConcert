@@ -63,7 +63,6 @@ namespace VocalConcert.Web.Controllers
                 actions2.Add(new vAction(aa.action));
             }
 
-
             //最新10音乐
             _musics = db.Musics.OrderByDescending(m => m.Time).Take(10).ToList();
             foreach (var music in _musics)

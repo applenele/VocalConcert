@@ -543,3 +543,9 @@ footer .inside {
 .brand:hover {
     text-decoration: none;
 }
+
+
+.main-box{
+    font-size:14px;
+    font-family:'Microsoft YaHei'
+}
