@@ -14,7 +14,7 @@ namespace VocalConcert.Web.Controllers
         public DB db = new DB();
         public User CurrentUser = null;
         public UserRole? Role = null;
-
+        public string CurrentCity { get; set; }
         public BaseController() { }
 
 
@@ -30,6 +30,8 @@ namespace VocalConcert.Web.Controllers
                 Role = CurrentUser.Role;
                 ViewBag.Role = Role;
             }
+            CurrentCity = this.HttpContext.Session["City"] == null ? "齐齐哈尔" : Session["City"].ToString();
+            ViewBag.CurrentCity = CurrentCity;
         }
         protected ActionResult Msg(string msg)
         {

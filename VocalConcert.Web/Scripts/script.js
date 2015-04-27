@@ -1,6 +1,6 @@
 ﻿var lock = false;
 var page = 0;
-
+var city = "";
 
 ///加载歌友会
 function LoadConcerts() {
@@ -9,7 +9,7 @@ function LoadConcerts() {
     }
     else {
         lock = true;
-        $.post("/Concert/GetConcerts", { "page": page }).done(function (data) {
+        $.post("/Concert/GetConcerts", { "page": page,"city":city }).done(function (data) {
             var str = "";
             for (var i = 0; i < data.length; i++) {
                 str += "<div><span><a href='/Concert/Show/" + data[i].ID + "'>" + data[i].Title + "</a> @<a href='/User/" + data[i].UserID + "'>" + data[i].Username + "</a> "+data[i].Time+"</span></div>";
@@ -31,7 +31,7 @@ function LoadActions() {
     }
     else {
         lock = true;
-        $.post("/Action/GetActions", { "page": page }).done(function (data) {
+        $.post("/Action/GetActions", { "page": page,"city":city }).done(function (data) {
             var str = "";
             for (var i = 0; i < data.length; i++) {
                 str += "<div><span><a href='/Action/Show/" + data[i].ID + "'>" + data[i].Title + "</a></span></div>";
@@ -76,7 +76,7 @@ function LoadProducts() {
     }
     else {
         lock = true;
-        $.post("/Product/GetProducts", { "page": page }).done(function (data) {
+        $.post("/Product/GetProducts", { "page": page,"city":city }).done(function (data) {
             var str = "";
             var st = "";
             for (var i = 0; i < data.length; i++) {
@@ -121,6 +121,8 @@ function Load() {
 }
 
 $(document).ready(function () {
+
+    city = $("#localCity").text();
 
     $('#begin').datetimepicker({
         format: 'yyyy-mm-dd hh:ii',

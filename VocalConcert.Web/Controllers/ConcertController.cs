@@ -91,7 +91,7 @@ namespace VocalConcert.Web.Controllers
         /// </summary>
         /// <param name="page"></param>
         /// <returns></returns>
-        public ActionResult GetConcerts(int page)
+        public ActionResult GetConcerts(int page,string city)
         {
             List<Group> _groups = new List<Group>();
             List<vGroupList> groups = new List<vGroupList>();
@@ -99,7 +99,7 @@ namespace VocalConcert.Web.Controllers
 
             db.Configuration.LazyLoadingEnabled = false;
             db.Configuration.ProxyCreationEnabled = false;
-            _groups = db.Groups.OrderByDescending(c => c.Time).Skip(page * 10).Take(10).ToList();
+            _groups = db.Groups.Where(c=>c.City.Contains(city)).OrderByDescending(c => c.Time).Skip(page * 10).Take(10).ToList();
             foreach (var group in _groups)
             {
                 groups.Add(new vGroupList(group));

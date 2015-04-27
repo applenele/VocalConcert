@@ -60,6 +60,7 @@ namespace VocalConcert.Entity
         public DateTime Time { get; set; }
 
         [Display(Name="城市")]
+        [Required]
         public string City { get; set; }
     }
 }

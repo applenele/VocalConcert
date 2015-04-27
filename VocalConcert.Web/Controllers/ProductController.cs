@@ -82,11 +82,11 @@ namespace VocalConcert.Web.Controllers
         /// </summary>
         /// <param name="page"></param>
         /// <returns></returns>
-        public ActionResult GetProducts(int page)
+        public ActionResult GetProducts(int page,string city)
         {
             List<Product> products = new List<Product>();
             List<vProductList> _products = new List<vProductList>();
-            products = db.Products.OrderByDescending(p => p.Time).Skip(page * 10).Take(10).ToList();
+            products = db.Products.Where(p=>p.City.Contains(city)).OrderByDescending(p => p.Time).Skip(page * 10).Take(10).ToList();
             foreach (var product in products)
             {
                 _products.Add(new vProductList(product));

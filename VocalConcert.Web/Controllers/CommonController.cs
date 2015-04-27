@@ -42,5 +42,33 @@ namespace VocalConcert.Web.Controllers
             return File(group.Icon, "image/jpg");
         } 
         #endregion
+
+
+        #region 修改当地城市页面
+        /// <summary>
+        ///  修改当地城市
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult ChangeCity()
+        {
+            return View();
+        } 
+        #endregion
+
+        /// <summary>
+        /// 更多当地城市
+        /// </summary>
+        /// <param name="city"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult DoChangeCity(string city)
+        {
+            HttpContext.Session["City"] = city;
+            return RedirectToAction("Index", "Home");
+        }
+
+
     }
+
 }

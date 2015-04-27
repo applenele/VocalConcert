@@ -74,12 +74,12 @@ namespace VocalConcert.Web.Controllers
         /// </summary>
         /// <param name="page"></param>
         /// <returns></returns>
-        public ActionResult GetActions(int page)
+        public ActionResult GetActions(int page,string city)
         {
             List<Entity.Action> _actions = new List<Entity.Action>();
             List<vActionList> actions = new List<vActionList>();
 
-            _actions = db.Actions.OrderByDescending(a => a.Time).Skip(page * 10).Take(10).ToList();
+            _actions = db.Actions.Where(a=>a.Address.Contains(city)).OrderByDescending(a => a.Time).Skip(page * 10).Take(10).ToList();
             foreach (var action in _actions)
             {
                 actions.Add(new vActionList(action));

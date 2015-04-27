@@ -291,13 +291,13 @@
     <Content Include="Views\League\Index.cshtml" />
     <Content Include="Views\Product\Show.cshtml" />
     <Content Include="Views\Music\Edit.cshtml" />
+    <Content Include="Views\Common\ChangeCity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Upload\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Comment\" />
-    <Folder Include="Views\Common\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
