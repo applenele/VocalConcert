@@ -89,7 +89,7 @@ function LoadProducts() {
                 if (data[i].StatusAsInt == 2) {
                     st = "<span style='background:blue'>已经结束</span>"
                 }
-                str += "<div><div style='float:left'><img src='/Common/Icon/" + data[i].ID + "' style='width:60px;heigth:60px;' /></div><div style='float:left;margin-left:10px;'><a href='/Product/Show/" + data[i].ID + "'>" + data[i].Title + "</a></span><span>@<a href='/User/" + data[i].UserID + "'>" + data[i].Username + "</a></span><br />" + st + "<span>活动时间：" + data[i].Begin + "-" + data[i].End + "</div></div>";
+                str += "<div style='margin-top:10px'><div style='float:left'><img src='/Common/Icon/" + data[i].ID + "' style='width:60px;heigth:60px;' /></div><div style='float:left;margin-left:10px;'><a href='/Product/Show/" + data[i].ID + "'>" + data[i].Title + "</a></span><span>@<a href='/User/" + data[i].UserID + "'>" + data[i].Username + "</a></span><br />" + st + "<span>活动时间：" + data[i].Begin + "-" + data[i].End + "</div></div>";
                 str += "<div class='clr'></div>";
             }
             $(".productLst").append(str);
