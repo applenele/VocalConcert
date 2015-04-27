@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using VocalConcert.Entity;
 using VocalConcert.Web.Models;
 using VocalConcert.Web.Models.ViewModel;
 
@@ -73,6 +74,10 @@ namespace VocalConcert.Web.Controllers
         [HttpGet]
         public ActionResult Register()
         {
+            List<SelectListItem> RoleList = new List<SelectListItem>();
+            RoleList.Add(new SelectListItem { Text = UserRole.Member.ToString(), Value = "0", Selected = true });
+            RoleList.Add(new SelectListItem { Text = UserRole.Business.ToString(), Value = "2", Selected = false });
+            ViewBag.RoleList = RoleList;
             return View();
         }
         #endregion
@@ -82,6 +87,10 @@ namespace VocalConcert.Web.Controllers
         [HttpPost]
         public async Task<ActionResult> Register(vUserRegister model)
         {
+            List<SelectListItem> RoleList = new List<SelectListItem>();
+            RoleList.Add(new SelectListItem { Text = UserRole.Member.ToString(), Value = "0", Selected = true });
+            RoleList.Add(new SelectListItem { Text = UserRole.Business.ToString(), Value = "2", Selected = false });
+            ViewBag.RoleList = RoleList;
             if (ModelState.IsValid)
             {
                 Entity.User user = new Entity.User();
@@ -97,6 +106,7 @@ namespace VocalConcert.Web.Controllers
                     user.Password = Helper.Encryt.GetMD5(model.Username);
                     user.Phone = model.Password;
                     user.Phone = model.Phone;
+                    user.RoleAsInt = model.RoleAsInt;
                     db.Users.Add(user);
                     int result = await db.SaveChangesAsync();
                     if (result > 0)
@@ -154,7 +164,7 @@ namespace VocalConcert.Web.Controllers
             {
                 return Msg("你没有权利修改该用户");
             }
-          
+
         }
         #endregion
 
