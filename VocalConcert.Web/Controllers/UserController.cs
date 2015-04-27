@@ -158,6 +158,7 @@ namespace VocalConcert.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize]
+        [Filter.EditUserFillter()]
         public ActionResult Edit(vUserEdit model, HttpPostedFileBase file)
         {
 
