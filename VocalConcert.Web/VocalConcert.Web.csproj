@@ -173,7 +173,6 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Filter\EditUserFillters.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -297,6 +296,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Filter\" />
     <Folder Include="Upload\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Comment\" />

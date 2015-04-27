@@ -142,10 +142,19 @@ namespace VocalConcert.Web.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            Entity.User user = new Entity.User();
-            user = db.Users.Find(id);
-            ViewBag.User = user;
-            return View();
+            bool result = HaveRightToEdit(id);
+            if (result)
+            {
+                Entity.User user = new Entity.User();
+                user = db.Users.Find(id);
+                ViewBag.User = user;
+                return View();
+            }
+            else
+            {
+                return Msg("你没有权利修改该用户");
+            }
+          
         }
         #endregion
 
@@ -158,7 +167,6 @@ namespace VocalConcert.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize]
-        [Filter.EditUserFillter()]
         public ActionResult Edit(vUserEdit model, HttpPostedFileBase file)
         {
 
@@ -200,7 +208,7 @@ namespace VocalConcert.Web.Controllers
             }
             ViewBag.User = user;
             return View(model);
-        } 
+        }
         #endregion
 
 
@@ -214,6 +222,28 @@ namespace VocalConcert.Web.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
+        }
+        #endregion
+
+
+
+        #region 当修改时查看  是不是有权利修改
+        /// <summary>
+        /// 当修改时查看
+        /// </summary>
+        /// <param name="udi"></param>
+        /// <returns></returns>
+        public bool HaveRightToEdit(int uid)
+        {
+            Entity.User user = db.Users.Find(uid);
+            if (CurrentUser.Username == user.Username)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         #endregion
     }
