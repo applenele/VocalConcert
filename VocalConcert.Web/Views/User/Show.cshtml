@@ -4,15 +4,30 @@
 @{
     ViewBag.Title = "Show";
     vUser user = ViewBag.User as vUser;
+
+    var imgSrc = "";
+    if (user.Avatar != null)
+    {
+        var base64 = Convert.ToBase64String(user.Avatar);
+        imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+    }
+    else
+    {
+        imgSrc = "/Images/userphoto.png";
+    }
+   
 }
 
 
 <h2>个人中心</h2>
 
 
-<div class="jumbotron">
+<div class="jumbotron main-box">
     <div>用户名：@user.Username</div>
-    <div>图像:@user.Avatar</div>
+
+    <div>
+        图像: <img src="@imgSrc" alt="图像" width="50" height="50" />
+    </div>
     <div>角色:@user.Role</div>
     <div>城市：@user.City</div>
     <div>真实姓名:@user.Name</div>

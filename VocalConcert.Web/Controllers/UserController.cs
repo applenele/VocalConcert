@@ -19,7 +19,7 @@ namespace VocalConcert.Web.Controllers
             return View();
         }
 
-      
+
         #region 登陆页面
         /// <summary>
         ///   登陆页面
@@ -30,7 +30,7 @@ namespace VocalConcert.Web.Controllers
         public ActionResult Login()
         {
             return View();
-        } 
+        }
         #endregion
 
 
@@ -42,7 +42,7 @@ namespace VocalConcert.Web.Controllers
         /// <returns></returns>
         [Route("Login")]
         [HttpPost]
-        public ActionResult Login(vUserLogin model,string returnUrl)
+        public ActionResult Login(vUserLogin model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace VocalConcert.Web.Controllers
                 ModelState.AddModelError("", "验证失败！请重新登陆！");
             }
             return View(model);
-        } 
+        }
         #endregion
 
         #region 注册页面
@@ -74,7 +74,7 @@ namespace VocalConcert.Web.Controllers
         public ActionResult Register()
         {
             return View();
-        } 
+        }
         #endregion
 
         #region 注册
@@ -128,7 +128,7 @@ namespace VocalConcert.Web.Controllers
             vUser user = new Models.ViewModel.vUser(_user);
             ViewBag.User = user;
             return View();
-        } 
+        }
         #endregion
 
 
@@ -146,13 +146,21 @@ namespace VocalConcert.Web.Controllers
             user = db.Users.Find(id);
             ViewBag.User = user;
             return View();
-        } 
+        }
         #endregion
 
-
+        #region 执行修改用户信息
+        /// <summary>
+        /// 执行修改用户信息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="file"></param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Edit(vUserEdit model)
+        [Authorize]
+        public ActionResult Edit(vUserEdit model, HttpPostedFileBase file)
         {
+
             Entity.User user = new Entity.User();
             user = db.Users.Find(model.ID);
 
@@ -160,6 +168,16 @@ namespace VocalConcert.Web.Controllers
             user.City = model.City;
             user.Name = model.Name;
             user.Phone = model.Phone;
+            if (file != null)
+            {
+                System.IO.Stream stream = file.InputStream;
+                byte[] buffer = new byte[stream.Length];
+                stream.Read(buffer, 0, (int)stream.Length);
+                stream.Close();
+                user.Avatar = buffer;
+            }
+            FormsAuthentication.SignOut();
+            FormsAuthentication.SetAuthCookie(model.Username, false);
             if (!string.IsNullOrEmpty(model.Password))
             {
                 if (user.Password.Equals(Helper.Encryt.GetMD5(model.Password)))
@@ -181,7 +199,8 @@ namespace VocalConcert.Web.Controllers
             }
             ViewBag.User = user;
             return View(model);
-        }
+        } 
+        #endregion
 
 
         #region 注销
@@ -194,7 +213,7 @@ namespace VocalConcert.Web.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
-        } 
+        }
         #endregion
     }
 }

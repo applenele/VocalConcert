@@ -2,13 +2,13 @@
 
 @{
     ViewBag.Title = "Edit";
-    VocalConcert.Entity.User user= ViewBag.User as VocalConcert.Entity.User;
+    VocalConcert.Entity.User user = ViewBag.User as VocalConcert.Entity.User;
 }
 
 <h2>用户信息修改</h2>
-<div class="jumbotron">
-    @using (Html.BeginForm())
-    {
+<div class="jumbotron main-box">
+   @using (Html.BeginForm(Html.BeginForm("Edit", "User", FormMethod.Post, new { enctype = "multipart/form-data" })))
+   {
         @Html.AntiForgeryToken()
         <div class="form-horizontal">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -19,6 +19,11 @@
                     @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @Value = user.Username })
                     @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
                 </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3" for="file">选择图像</label>
+                <div class="col-md-9"><input type="file" name="file" class="form-control" /></div>
             </div>
 
             <div class="form-group">
