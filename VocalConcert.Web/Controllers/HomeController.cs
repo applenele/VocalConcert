@@ -27,8 +27,8 @@ namespace VocalConcert.Web.Controllers
             List<Product> _products = new List<Product>();
             List<vProduct> products = new List<vProduct>();
 
-            //最新10条歌友会
-            _groups = db.Groups.OrderByDescending(g => g.Time).Take(10).ToList();
+            //最新5条歌友会
+            _groups = db.Groups.OrderByDescending(g => g.Time).Take(5).ToList();
             foreach (var group in _groups)
             {
                 groups.Add(new vGroup(group));
@@ -38,15 +38,15 @@ namespace VocalConcert.Web.Controllers
             var _gms = (from gm in db.GroupMembers
                         group gm by gm.Group into g
                         orderby g.Count() descending
-                        select new { Group = g.Key, Count = g.Count() }).Take(10).ToList();
+                        select new { Group = g.Key, Count = g.Count() }).Take(5).ToList();
 
             foreach (var gm in _gms)
             {
                 groups2.Add(new vGroup(gm.Group));
             }
 
-            //最新10活动
-            _actions = db.Actions.OrderByDescending(a => a.Title).Take(10).ToList();
+            //最新5活动
+            _actions = db.Actions.OrderByDescending(a => a.Title).Take(5).ToList();
             foreach (var action in _actions)
             {
                 actions1.Add(new vAction(action));
@@ -56,29 +56,29 @@ namespace VocalConcert.Web.Controllers
             var _as = (from aa in db.ActionAttenders
                        group aa by aa.Action into a
                        orderby a.Count() descending
-                       select new { action = a.Key, Count = a.Count() }).Take(10).ToList();
+                       select new { action = a.Key, Count = a.Count() }).Take(5).ToList();
 
             foreach (var aa in _as)
             {
                 actions2.Add(new vAction(aa.action));
             }
 
-            //最新10音乐
-            _musics = db.Musics.OrderByDescending(m => m.Time).Take(10).ToList();
+            //最新5音乐
+            _musics = db.Musics.OrderByDescending(m => m.Time).Take(5).ToList();
             foreach (var music in _musics)
             {
                 musics1.Add(new vMusic(music));
             }
-            //评分最高10音乐
+            //评分最高5音乐
             _musics = db.Musics.OrderByDescending(m => m.Time).ToList();
             foreach (var music in _musics)
             {
                 musics2.Add(new vMusic(music));
             }
-            musics2 = musics2.OrderByDescending(m => m.Score).Take(10).ToList();
+            musics2 = musics2.OrderByDescending(m => m.Score).Take(5).ToList();
 
-            ///最新10个优惠产品
-            _products = db.Products.OrderByDescending(p => p.Time).Take(10).ToList();
+            ///最新5个优惠产品
+            _products = db.Products.OrderByDescending(p => p.Time).Take(5).ToList();
             foreach (var product in _products)
             {
                 products.Add(new vProduct(product));

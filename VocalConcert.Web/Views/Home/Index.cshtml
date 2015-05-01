@@ -4,99 +4,110 @@
     ViewBag.Title = " 首页";
 }
 
-<div class="jumbotron main-box">
-    <div>
-        热门歌友会：
-        @if (((List<vGroup>)ViewBag.Groups2).Count > 0)
-        {
-            foreach (var group in ViewBag.Groups2 as List<vGroup>)
+<div class="main-box">
+    <div class="col-3" style="width:30%;">
+        <div>
+            热门歌友会：
+            @if (((List<vGroup>)ViewBag.Groups2).Count > 0)
             {
-                <div><a href="/Concert/Show/@group.ID">@group.Title</a></div>
+                foreach (var group in ViewBag.Groups2 as List<vGroup>)
+                {
+            <div style="padding-top:5px;padding-bottom:5px;"><a href="/Concert/Show/@group.ID">@group.Title</a></div>
+                }
             }
-        }
-        else
-        {
+            else
+            {
             <span>暂无热门歌友会</span>
-        }
-
-    </div>
-    <div>
-        最新歌友会：
-        @if (((List<vGroup>)ViewBag.Groups).Count() > 0)
-        {
-            foreach (var group in ViewBag.Groups as List<vGroup>)
-            {
-                <div><a href="/Concert/Show/@group.ID">@group.Title</a></div>
             }
-        }
-        else
-        {
-            <span>暂无最新歌友会</span>
-        }
 
+        </div>
+        <div style="margin-top:20px;">
+            最新歌友会：
+            @if (((List<vGroup>)ViewBag.Groups).Count() > 0)
+            {
+                foreach (var group in ViewBag.Groups as List<vGroup>)
+                {
+                    <div style="padding-top:5px;padding-bottom:5px;"><a href="/Concert/Show/@group.ID">@group.Title</a></div>
+                }
+            }
+            else
+            {
+                <span>暂无最新歌友会</span>
+            }
+
+        </div>
     </div>
 
-    <div>
-        热门活动：
-        @if (((List<vAction>)ViewBag.Actions2).Count > 0)
-        {
-            foreach (var action in ViewBag.Actions2 as List<vAction>)
+
+    <div class="col-3" style="width:30%;">
+        <div>
+            热门活动：
+            @if (((List<vAction>)ViewBag.Actions2).Count > 0)
             {
-                <div><a href="/Action/Show/@action.ID">@action.Title</a></div>
+                foreach (var action in ViewBag.Actions2 as List<vAction>)
+                {
+                    <div style="padding-top:5px;padding-bottom:5px;"><a href="/Action/Show/@action.ID">@action.Title</a></div>
+                }
             }
-        }
-        else
-        {
+            else
+            {
             <span>暂无热门活动</span>
-        }
-    </div>
-    <div>
-        最新活动：
-        @if (((List<vAction>)ViewBag.Actions).Count > 0)
-        {
-            foreach (var action in ViewBag.Actions as List<vAction>)
-            {
-                <div><a href="/Action/Show/@action.ID">@action.Title</a></div>
             }
-        }
-        else
-        {
-            <span>暂无最新活动</span>
-        }
-    </div>
-
-
-    <div>
-        热门音乐：
-        @if (((List<vMusic>)ViewBag.Musics2).Count > 0)
-        {
-            foreach (var music in ViewBag.Musics2 as List<vMusic>)
+        </div>
+        <div style="margin-top:20px;">
+            最新活动：
+            @if (((List<vAction>)ViewBag.Actions).Count > 0)
             {
-                <div><a href="/Music/Show/@music.ID">@music.Title</a> 分数：@music.Score @@<a href="/User/@music.UserID">@music.User.Username</a> <span>@music.Time</span></div>
+                foreach (var action in ViewBag.Actions as List<vAction>)
+                {
+                    <div style="padding-top:5px;padding-bottom:5px;"><a href="/Action/Show/@action.ID">@action.Title</a></div>
+                }
             }
-        }
-        else
-        {
-            <span>暂无热门音乐</span>
-        }
-    </div>
-    <div>
-        最新音乐：
-        @if (((List<vMusic>)ViewBag.Musics1).Count > 0)
-        {
-            foreach (var music in ViewBag.Musics1 as List<vMusic>)
+            else
             {
-                <div><a href="/Music/Show/@music.ID">@music.Title</a> 分数：@music.Score @@<a href="/User/@music.UserID">@music.User.Username</a> <span>@music.Time</span></div>
+                <span>暂无最新活动</span>
             }
-        }
-        else
-        {
-            <span>暂无最新音乐</span>
-        }
+        </div>
 
     </div>
 
-    <div>
+
+    <div class="col-3" style="width:30%;">
+        <div>
+            热门音乐：
+            @if (((List<vMusic>)ViewBag.Musics2).Count > 0)
+            {
+                foreach (var music in ViewBag.Musics2 as List<vMusic>)
+                {
+                    <div style="padding-top:5px;padding-bottom:5px;"><a href="/Music/Show/@music.ID">@music.Title</a> 分数：@music.Score @@<a href="/User/@music.UserID">@music.User.Username</a></div>
+                }
+            }
+            else
+            {
+                <span>暂无热门音乐</span>
+            }
+        </div>
+        <div style="margin-top:20px;">
+            最新音乐：
+            @if (((List<vMusic>)ViewBag.Musics1).Count > 0)
+            {
+                foreach (var music in ViewBag.Musics1 as List<vMusic>)
+                {
+                    <div style="padding-top:5px;padding-bottom:5px;"><a href="/Music/Show/@music.ID">@music.Title</a> 分数：@music.Score @@<a href="/User/@music.UserID">@music.User.Username</a></div>
+                }
+            }
+            else
+            {
+                <span>暂无最新音乐</span>
+            }
+
+        </div>
+
+    </div>
+
+    <div class="clr"></div>
+
+    @*<div>
         最新优惠产品：
         @if (((List<vProduct>)ViewBag.Products).Count > 0)
         {
@@ -109,6 +120,6 @@
         {
             <span>暂无最新优惠产品</span>
         }
-      
-    </div>
+
+    </div>*@
 </div>
