@@ -96,16 +96,5 @@ namespace VocalConcert.Web.Controllers
             return View();
         }
 
-
-        public ActionResult Test()
-        {
-            Entity.User user = new Entity.User { Username = "admin", Password = "111111" };
-            db.Users.Add(user);
-            db.SaveChangesAsync();
-            return View();
-        }
-
-
-
     }
 }

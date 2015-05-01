@@ -5,7 +5,7 @@
 }
 
 <h2>音乐修改</h2>
-<div class="jumbotron">
+<div class="main-box">
     @using (Html.BeginForm(Html.BeginForm("Edit", "Music", FormMethod.Post, new { enctype = "multipart/form-data" })))
     {
         @Html.AntiForgeryToken()

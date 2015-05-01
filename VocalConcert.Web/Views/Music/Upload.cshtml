@@ -6,7 +6,7 @@
 
 <h2>上传音乐</h2>
 
-<div class="jumbotron">
+<div class="main-box">
     @using (Html.BeginForm(Html.BeginForm("Upload", "Music", FormMethod.Post, new { enctype = "multipart/form-data" })))
     {
         @Html.AntiForgeryToken()
