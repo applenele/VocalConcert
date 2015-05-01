@@ -58,15 +58,15 @@
 
     </dl>
 
-    <p>
-        成员:
+    <div>
+        <div>成员:</div> 
         @foreach (var user in Model.Attenders)
         {
             <div style="float:left;margin-right:20px;"><a href="/User/@user.ID">@user.Username</a> </div>
         }
-    </p>
+    </div>
     <div class="clr"></div>
-    <p>
+    <div style="margin-top:20px;">
         @if (ViewBag.CurrentUser != null)
         {
             if (ViewBag.CurrentUser.ID == Model.UserID)
@@ -88,7 +88,7 @@
             <a href="/Concert/Attend/@Model.ID">加入</a>
         }
 
-    </p>
+    </div>
 </div>
 
 
