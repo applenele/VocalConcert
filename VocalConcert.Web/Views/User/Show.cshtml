@@ -23,15 +23,27 @@
 
 
 <div class="main-box">
-    <div>用户名：@user.Username</div>
+    <h3>用户名</h3>
+    <p>
+        @user.Username
+    </p>
 
-    <div>
-        图像: <img src="@imgSrc" alt="图像" width="50" height="50" />
-    </div>
-    <div>角色:@user.Role</div>
-    <div>城市：@user.City</div>
-    <div>真实姓名:@user.Name</div>
-    <div>电话：@user.Phone</div>
+    <h3>图像 </h3>
+    <p><img src="@imgSrc" alt="图像" width="150" height="150"  style="border-radius:50%;"/></p>
+    
+    <h3>角色</h3>
+    <p>@user.Role</p>
+
+    <h3>城市</h3>
+    <p>@user.City</p>
+      
+    <h3>真实姓名</h3>
+    <p>@user.Name</p>
+
+    <h3>电话</h3>
+    <p>@user.Phone</p>
+
+
     @if (ViewBag.CurrentUser != null)
     { 
        if(ViewBag.CurrentUser.ID==user.ID)

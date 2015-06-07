@@ -9,9 +9,9 @@ namespace VocalConcert.Entity
 {
     public enum MusicType
     {
-        Original, //原创
-        Cover, //翻唱
-        Instrument //伴奏
+        原创, //原创
+        翻唱, //翻唱
+        伴奏 //伴奏
     }
 
     [Table("t_music")]

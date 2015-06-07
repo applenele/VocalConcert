@@ -21,9 +21,5 @@ namespace VocalConcert.Web.Models
         public DbSet<ActionAttender> ActionAttenders { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        //public DbSet<Discussion> Discussions { get; set; }
-
-        
-      
     }
 }

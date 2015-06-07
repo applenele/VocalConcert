@@ -4,74 +4,80 @@
     ViewBag.Title = "Show Product";
 }
 
-<h2>优惠产品显示</h2>
+<h2>@Html.DisplayFor(model => model.Title)</h2>
 <div class="main-box">
-    <dl class="dl-horizontal">
-
-        <dt>
+ 
+        <h3>
             图标
-        </dt>
+        </h3>
 
-        <dd>
-            <img src="/Common/Icon/@Model.ID" width="50" height="50" alt="优惠产品图标" />
-        </dd>
+        <p>
+            <img src="/Common/Icon/@Model.ID" width="480"   alt="优惠产品图标" />
+        </p>
 
-        <dt>
+        <h3>
             @Html.DisplayNameFor(model => model.Title)
-        </dt>
+        </h3>
 
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.Title)
-        </dd>
+        </p>
 
-        <dt>
+        <h3>
             @Html.DisplayNameFor(model => model.Description)
-        </dt>
+        </h3>
 
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.Description)
-        </dd>
+        </p>
 
-        <dt>
+        <h3>
             @Html.DisplayNameFor(model => model.Begin)
-        </dt>
+        </h3>
 
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.Begin)
-        </dd>
+        </p>
 
-        <dt>
+        <h3>
             @Html.DisplayNameFor(model => model.End)
-        </dt>
+        </h3>
 
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.End)
-        </dd>
+        </p>
 
-        <dt>
-            发布人
-        </dt>
-
-        <dd>
+        <h3>
+             商家
+        </h3>
+        <p>
             <a href="/User/@Model.UserID">@Html.DisplayFor(model => model.User.Username)</a> 
-        </dd>
+        </p>
 
-        <dt>
+        <h3>
              活动状态
-        </dt>
+        </h3>
 
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.Status)
-        </dd>
+        </p>
 
 
-        <dt>
+        <h3>
             @Html.DisplayNameFor(model => model.Time)
-        </dt>
+        </h3>
 
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.Time)
-        </dd>
+        </p>
 
-    </dl>
+    <div style="margin-top:20px;">
+        @if (ViewBag.CurrentUser != null)
+        {
+            if (ViewBag.CurrentUser.ID == Model.UserID || ViewBag.CurrentUser.RoleAsInt == 4)
+            {
+                <span>@Html.ActionLink("删除", "Delete", new { id = Model.ID })</span>
+            }
+        }
+    </div>
 </div>

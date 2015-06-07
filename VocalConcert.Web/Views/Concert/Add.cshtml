@@ -3,8 +3,9 @@
 @{
     ViewBag.Title = "Add";
 }
+<script src="/Scripts/ckeditor/ckeditor.js"></script>
 
-<h2>增加歌友会</h2>
+<h2>创建歌友会</h2>
 
 <div class="main-box">
    @using (Html.BeginForm(Html.BeginForm("Add", "Concert", FormMethod.Post, new { enctype = "multipart/form-data" })))
@@ -24,7 +25,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextAreaFor(model => model.Description, new { @class = "ckeditor" })
                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -37,7 +38,12 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                    <select name="City" class="form-control">
+                        <option value="齐齐哈尔">齐齐哈尔</option>
+                        <option value="哈尔滨">哈尔滨</option>
+                        <option value="大庆">大庆</option>
+                        <option value="沈阳">沈阳</option>
+                    </select>
                     @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
                 </div>
             </div>

@@ -37,6 +37,7 @@ namespace VocalConcert.Web.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpPost]
+        [ValidateInput(false)]
         public async Task<ActionResult> Add(vGroupAdd model, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)

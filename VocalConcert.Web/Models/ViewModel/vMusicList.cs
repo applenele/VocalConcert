@@ -16,6 +16,8 @@ namespace VocalConcert.Web.Models.ViewModel
 
         public int UserID { get; set; }
 
+        public string MusicType { get; set; }
+
         public string Username { get; set; }
 
         public bool RecommendMark { get; set; }
@@ -35,6 +37,7 @@ namespace VocalConcert.Web.Models.ViewModel
             this.RecommendMark = music.RecommendMark;
             this.Time = Helper.Time.ToTimeTip(music.Time);
             this.UserID = music.UserID;
+            this.MusicType = music.Type.ToString();
             foreach (var comment in music.Comments)
             {
                 this.Score += comment.Score;

@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using VocalConcert.Entity;
+using System.Net;
+using System.IO;
+using System.Text;
 
 namespace VocalConcert.Web.Controllers
 {
@@ -40,7 +43,21 @@ namespace VocalConcert.Web.Controllers
             Group group = new Group();
             group = db.Groups.Find(id);
             return File(group.Icon, "image/jpg");
-        } 
+        }
+        #endregion
+
+        #region 显示用户图标
+        /// <summary>
+        /// 显示用户图标
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult ShowUserIcon(int id)
+        {
+            User user = new User();
+            user = db.Users.Find(id);
+            return File(user.Avatar, "image/jpg");
+        }
         #endregion
 
 
@@ -67,6 +84,42 @@ namespace VocalConcert.Web.Controllers
             HttpContext.Session["City"] = city;
             return RedirectToAction("Index", "Home");
         }
+
+
+        public ActionResult  GetWeather(string city)
+        {
+            var ret = "";
+            Dictionary<string, string> cities = new Dictionary<string, string>();
+            cities["齐齐哈尔"] = "http://www.weather.com.cn/adat/sk/101050201.html";
+            cities["哈尔滨"] = "http://www.weather.com.cn/adat/sk/101050101.html";
+            cities["大庆"] = "http://www.weather.com.cn/adat/sk/101050901.html";
+            cities["沈阳"] = "http://www.weather.com.cn/adat/sk/101070101.html";
+            var json = HttpGet(cities[city]);
+
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        private static string HttpGet(string Url)
+        {
+            string ret = string.Empty;
+            try
+            {
+                HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(new Uri(Url));
+                webReq.Timeout = 3000;
+                webReq.Method = "GET";
+                HttpWebResponse response = (HttpWebResponse)webReq.GetResponse();
+                StreamReader sr = new StreamReader(response.GetResponseStream(), Encoding.Default);
+                ret = sr.ReadToEnd();
+                sr.Close();
+                response.Close();
+            }
+            catch
+            {
+            }
+            return ret;
+        }
+
 
 
     }

@@ -4,97 +4,95 @@
     ViewBag.Title = "Show";
 }
 
-<h2>活动展示</h2>
+<h2>@Html.DisplayFor(model => model.Title)</h2>
 
 <div class="main-box">
-    <dl class="dl-horizontal">
-
-        <dt>
+  
+        <h3>
             @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
+        </h3>
+        <p>
             @Html.DisplayFor(model => model.Title)
-        </dd>
+        </p>
 
-        <dt>
+        <h3>
             @Html.DisplayNameFor(model => model.Description)
-        </dt>
+        </h3>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+        <p>
+            @MvcHtmlString.Create(Model.Description)
+        </p>
 
-        <dt>
+        <h3>
             发起人
-        </dt>
+        </h3>
 
-        <dd>
-            @Html.DisplayFor(model => model.User.Username)
-        </dd>
+        <p>
+            <img width="150" height="150" style="border-radius:50%;" src="/Common/ShowUserIcon/@Model.UserID" alt="图像" /> <br />
+            <div style="width:150px;text-align:center;"> <a href="/User/@Model.UserID">@Html.DisplayFor(model => model.User.Username)</a> </div>  
+        </p>
 
-        <dt>
+        <h3>
             所属歌友会
-        </dt>
+        </h3>
 
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.Group.Title)
-        </dd>
+        </p>
 
 
-        <dt>
+        <h3>
             @Html.DisplayNameFor(model => model.Begin)
-        </dt>
+        </h3>
 
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.Begin)
-        </dd>
+        </p>
 
-        <dt>
+        <h3>
             @Html.DisplayNameFor(model => model.End)
-        </dt>
+        </h3>
 
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.End)
-        </dd>
+        </p>
 
-        <dt>
+        <h3>
             @Html.DisplayNameFor(model => model.Time)
-        </dt>
+        </h3>
 
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.Time)
-        </dd>
+        </p>
 
-        <dt>
+        <h3>
             @Html.DisplayNameFor(model => model.Address)
-        </dt>
+        </h3>
 
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.Address)
-        </dd>
+        </p>
 
-        <dt>
+        <h3>
             @Html.DisplayNameFor(model => model.Hint)
-        </dt>
+        </h3>
 
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.Hint)
-        </dd>
-    </dl>
+        </p>
 
     <p>
         参与人员:
         @foreach (var user in Model.Users)
         {
-            <div style="float:left;margin-right:20px;"><a href="/User/@user.ID">@user.Username</a> </div>
+            <div style="float:left;margin-right:20px; line-height:32px;font-size:20px"> <img src="/Common/ShowUserIcon/@user.ID" alt="用户图像"  width="32" height="32" style="border-radius:50%;"/>&nbsp;&nbsp;<a href="/User/@user.ID">@user.Username</a> </div>
         }
     </p>
     <div class="clr"></div>
     <p>
         @if (ViewBag.CurrentUser != null)
         {
-            if (ViewBag.CurrentUser.ID == Model.UserID)
+            if (ViewBag.CurrentUser.ID == Model.UserID || ViewBag.CurrentUser.RoleAsInt == 4)
             {
                 <span>@Html.ActionLink("修改", "Edit", new { id = Model.ID })</span>
                 <span>@Html.ActionLink("删除", "Delete", new { id = Model.ID })</span>

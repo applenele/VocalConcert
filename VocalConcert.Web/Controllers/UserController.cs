@@ -75,8 +75,8 @@ namespace VocalConcert.Web.Controllers
         public ActionResult Register()
         {
             List<SelectListItem> RoleList = new List<SelectListItem>();
-            RoleList.Add(new SelectListItem { Text = UserRole.Member.ToString(), Value = "0", Selected = true });
-            RoleList.Add(new SelectListItem { Text = UserRole.Business.ToString(), Value = "2", Selected = false });
+            RoleList.Add(new SelectListItem { Text = "普通用户", Value = "0", Selected = true });
+            RoleList.Add(new SelectListItem { Text = "商户", Value = "2", Selected = false });
             ViewBag.RoleList = RoleList;
             return View();
         }
@@ -88,8 +88,8 @@ namespace VocalConcert.Web.Controllers
         public async Task<ActionResult> Register(vUserRegister model)
         {
             List<SelectListItem> RoleList = new List<SelectListItem>();
-            RoleList.Add(new SelectListItem { Text = UserRole.Member.ToString(), Value = "0", Selected = true });
-            RoleList.Add(new SelectListItem { Text = UserRole.Business.ToString(), Value = "2", Selected = false });
+            RoleList.Add(new SelectListItem { Text = "普通用户", Value = "0", Selected = true });
+            RoleList.Add(new SelectListItem { Text = "商户", Value = "2", Selected = false });
             ViewBag.RoleList = RoleList;
             if (ModelState.IsValid)
             {
@@ -103,8 +103,7 @@ namespace VocalConcert.Web.Controllers
                 {
                     user = new Entity.User();
                     user.Username = model.Username;
-                    user.Password = Helper.Encryt.GetMD5(model.Username);
-                    user.Phone = model.Password;
+                    user.Password = Helper.Encryt.GetMD5(model.Password);
                     user.Phone = model.Phone;
                     user.RoleAsInt = model.RoleAsInt;
                     db.Users.Add(user);

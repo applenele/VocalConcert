@@ -1,4 +1,10 @@
-\\psf\Home\Desktop\vsprojects\VocalConcert\VocalConcert.Entity\bin\Debug\VocalConcert.Entity.dll
-\\psf\Home\Desktop\vsprojects\VocalConcert\VocalConcert.Entity\bin\Debug\VocalConcert.Entity.pdb
-\\psf\Home\Desktop\vsprojects\VocalConcert\VocalConcert.Entity\obj\Debug\VocalConcert.Entity.dll
-\\psf\Home\Desktop\vsprojects\VocalConcert\VocalConcert.Entity\obj\Debug\VocalConcert.Entity.pdb
+C:\Users\xixi\Desktop\VocalConcert-master\VocalConcert.Entity\bin\Debug\VocalConcert.Entity.dll
+C:\Users\xixi\Desktop\VocalConcert-master\VocalConcert.Entity\bin\Debug\VocalConcert.Entity.pdb
+C:\Users\xixi\Desktop\VocalConcert-master\VocalConcert.Entity\obj\Debug\VocalConcert.Entity.csprojResolveAssemblyReference.cache
+C:\Users\xixi\Desktop\VocalConcert-master\VocalConcert.Entity\obj\Debug\VocalConcert.Entity.dll
+C:\Users\xixi\Desktop\VocalConcert-master\VocalConcert.Entity\obj\Debug\VocalConcert.Entity.pdb
+\\psf\Home\Desktop\VocalConcert-master\VocalConcert-master\VocalConcert.Entity\bin\Debug\VocalConcert.Entity.dll
+\\psf\Home\Desktop\VocalConcert-master\VocalConcert-master\VocalConcert.Entity\bin\Debug\VocalConcert.Entity.pdb
+\\psf\Home\Desktop\VocalConcert-master\VocalConcert-master\VocalConcert.Entity\obj\Debug\VocalConcert.Entity.csprojResolveAssemblyReference.cache
+\\psf\Home\Desktop\VocalConcert-master\VocalConcert-master\VocalConcert.Entity\obj\Debug\VocalConcert.Entity.dll
+\\psf\Home\Desktop\VocalConcert-master\VocalConcert-master\VocalConcert.Entity\obj\Debug\VocalConcert.Entity.pdb

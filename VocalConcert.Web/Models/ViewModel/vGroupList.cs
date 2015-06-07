@@ -22,6 +22,7 @@ namespace VocalConcert.Web.Models.ViewModel
 
         public int UserID { get; set; }
 
+
         public string Username { get; set; }
 
         [Display(Name="创建时间")]
@@ -31,14 +32,14 @@ namespace VocalConcert.Web.Models.ViewModel
         [Display(Name="城市")]
         public string City { get; set; }
 
-
+        public int Count { get; set; }
 
         public vGroupList() { }
 
         public vGroupList(Group group)
         {
 
-            DB db=new DB();
+            DB db = new DB();
             this.ID = group.ID;
             this.Title = group.Title;
             this.Description = group.Description;
@@ -46,7 +47,12 @@ namespace VocalConcert.Web.Models.ViewModel
             this.Username = db.Users.Find(group.UserID).Username;
             this.Time = group.Time.ToString();
             this.City = group.City;
+            List<GroupMember> gms = new List<GroupMember>();
+            gms = db.GroupMembers.Where(gm => gm.GroupID == group.ID).ToList();
+            this.Count = gms.Count();
         }
+
+
 
     }
 }

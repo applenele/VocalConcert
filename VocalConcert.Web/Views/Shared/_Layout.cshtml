@@ -56,7 +56,7 @@
                         当前城市： @if (string.IsNullOrEmpty((string)(ViewBag.CurrentCity)))
                         {<span id="localCity">齐齐哈尔</span>  <a href="/Common/ChangeCity">切换</a>}
                         else
-                        {<span id="localCity">@ViewBag.CurrentCity</span> <span>晴</span> <a href="/Common/ChangeCity">切换</a> }
+                        {<span id="localCity">@ViewBag.CurrentCity</span> <span>@ViewBag.Weather</span> <a href="/Common/ChangeCity">切换</a> }
                      </p>
                 }
                 else
@@ -80,7 +80,7 @@
                         <div class="container">
                             <div class="cont-bot"></div>
                             <div class="inside">
-                                齐齐哈尔大学软件工程系XXX毕业设计
+                                齐齐哈尔大学软件工程系文彬茜毕业设计
                             </div>
                         </div>
                     </footer>

@@ -299,7 +299,15 @@ h1 {
 
 h2 {
     color: #fff;
-    font-size: 30px;
+    font-size: 34px;
+    line-height: 1.2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #fff;
+    font-size: 20px;
     line-height: 1.2em;
     text-transform: uppercase;
     margin-bottom: 20px;
@@ -570,4 +578,8 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+img {
+   max-width:100%;
 }

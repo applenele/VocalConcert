@@ -12,7 +12,7 @@ function LoadConcerts() {
         $.post("/Concert/GetConcerts", { "page": page,"city":city }).done(function (data) {
             var str = "";
             for (var i = 0; i < data.length; i++) {
-                str += "<div><span><a href='/Concert/Show/" + data[i].ID + "'>" + data[i].Title + "</a> @<a href='/User/" + data[i].UserID + "'>" + data[i].Username + "</a> "+data[i].Time+"</span></div>";
+                str += "<tr><td><img src='/Common/ShowGroupIcon/" + data[i].ID + "' width='100' height='100'  style='border-radius :50%;'  /></td><td><span><a href='/Concert/Show/" + data[i].ID + "'>" + data[i].Title + "</a> <br /> 人数："+data[i].Count+" @<a href='/User/" + data[i].UserID + "'>" + data[i].Username + "</a></span></td></tr>";
             }
             $(".concertLst").append(str);
 
@@ -34,7 +34,7 @@ function LoadActions() {
         $.post("/Action/GetActions", { "page": page,"city":city }).done(function (data) {
             var str = "";
             for (var i = 0; i < data.length; i++) {
-                str += "<div><span><a href='/Action/Show/" + data[i].ID + "'>" + data[i].Title + "</a></span></div>";
+                str += "<div><h2 style='margin:0;'><a href='/Action/Show/" + data[i].ID + "'>" + data[i].Title + "</a></h2> <small>开始时间:"+data[i].Begin+"  结束时间:"+data[i].End+"</small><br/><div style='color: #eee;font-size:18px;margin-top:10px;'>"+data[i].Description+"</div></div>";
             }
             $(".actionLst").append(str);
 
@@ -56,7 +56,7 @@ function LoadMusics() {
         $.post("/Music/GetMusics", { "page": page }).done(function (data) {
             var str = "";
             for (var i = 0; i < data.length; i++) {
-                str += "<div><span><a href='/Music/Show/" + data[i].ID + "'>" + data[i].Title + "</a></span>  <span>分数：" + data[i].Score + "</span>  <span>@<a href='/User/" + data[i].UserID + "'>" + data[i].Username + "</a></span><span>" + data[i].Time + "</span></div>";
+                str += "<tr><td><a href='/Music/Show/"+data[i].ID+"'>" + data[i].Title + "</a></td><td>" + data[i].MusicType + "</td><td>" + data[i].Username + "</td><td>" + data[i].Time + "</td><td>" + data[i].Score + "</td></tr>"
             }
             $(".musicLst").append(str);
 
@@ -81,17 +81,18 @@ function LoadProducts() {
             var st = "";
             for (var i = 0; i < data.length; i++) {
                 if (data[i].StatusAsInt == 0) {
-                    st = "<span style='background:green'>即将进行</span>"
+                    st = "<span style='background:green;color:#fff;padding:5px 10px;'>即将进行</span>"
                 }
                 if (data[i].StatusAsInt == 1) {
-                    st = "<span style='background:red'>正在进行</span>"
+                    st = "<span style='background:red;color:#fff;padding:5px 10px;'>正在进行</span>"
                 }
                 if (data[i].StatusAsInt == 2) {
-                    st = "<span style='background:blue'>已经结束</span>"
+                    st = "<span style='background:blue;color:#fff;padding:5px 10px;'>已经结束</span>"
                 }
-                str += "<div style='margin-top:10px'><div style='float:left'><img src='/Common/Icon/" + data[i].ID + "' style='width:60px;heigth:60px;' /></div><div style='float:left;margin-left:10px;'><a href='/Product/Show/" + data[i].ID + "'>" + data[i].Title + "</a></span><span>@<a href='/User/" + data[i].UserID + "'>" + data[i].Username + "</a></span><br />" + st + "<span>活动时间：" + data[i].Begin + "-" + data[i].End + "</div></div>";
-                str += "<div class='clr'></div>";
+                str += "<tr style='margin-top:10px'><td><img src='/Common/Icon/" + data[i].ID + "' style='width:180px;heigth:100px;' /></td><td><a href='/Product/Show/" + data[i].ID + "'>" + data[i].Title + "</a></span><span>@<a href='/User/" + data[i].UserID + "'>" + data[i].Username + "</a></span><br />" + st + "<span>活动时间：" + data[i].Begin + "-" + data[i].End + "</td></tr>";
             }
+
+            
             $(".productLst").append(str);
 
             if (data.length == 10) {

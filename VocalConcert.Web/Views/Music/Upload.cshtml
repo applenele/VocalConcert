@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Upload";
 }
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
 
 <h2>上传音乐</h2>
 
@@ -23,7 +24,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextAreaFor(model => model.Description, new { @class = "ckeditor" })
                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -31,7 +32,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Lyric, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Lyric, new { @class = "form-control" })
+                    @Html.TextAreaFor(model => model.Lyric, new { @class = "ckeditor" })
                     @Html.ValidationMessageFor(model => model.Lyric, "", new { @class = "text-danger" })
                 </div>
             </div>

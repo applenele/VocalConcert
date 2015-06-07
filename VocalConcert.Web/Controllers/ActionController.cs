@@ -40,6 +40,7 @@ namespace VocalConcert.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize]
+        [ValidateInput(false)]
         public ActionResult Add(Entity.Action model)
         {
             ViewBag.GroupID = model.GroupID;

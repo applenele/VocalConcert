@@ -36,6 +36,7 @@ namespace VocalConcert.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize]
+        [ValidateInput(false)]
         public ActionResult Add(Product model, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
@@ -111,6 +112,28 @@ namespace VocalConcert.Web.Controllers
         #endregion
 
 
+        #region 删除商品信息
+        /// <summary>
+        /// 删除商品信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Delete(int id)
+        {
+            Product product = new Product();
+            product = db.Products.Find(id);
+            db.Products.Remove(product);
+            int result = db.SaveChanges();
+            if (result > 0)
+            {
+                return RedirectToAction("Index", "League");
+            }
+            else
+            {
+                return Msg("删除商品失败！");
+            }
+        } 
+        #endregion
        
     }
 }

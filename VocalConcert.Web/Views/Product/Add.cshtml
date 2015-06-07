@@ -3,8 +3,8 @@
 @{
     ViewBag.Title = "Add";
 }
-
-<h2>商家发布优惠产品信息</h2>
+<script src="/Scripts/ckeditor/ckeditor.js"></script>
+<h2>发布优惠产品</h2>
 
 <div class="main-box">
    @using (Html.BeginForm(Html.BeginForm("Add", "Product", FormMethod.Post, new { enctype = "multipart/form-data" })))
@@ -23,7 +23,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextAreaFor(model => model.Description, new { @class = "ckeditor" })
                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -65,6 +65,4 @@
         </div>
     }
 </div>
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+ 

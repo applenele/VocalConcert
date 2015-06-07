@@ -7,13 +7,14 @@
 <div class="main-box">
     <div class="col-3" style="width:30%;">
         <div>
-            热门歌友会：
+            <h2>热门歌友会</h2>
             @if (((List<vGroup>)ViewBag.Groups2).Count > 0)
             {
                 foreach (var group in ViewBag.Groups2 as List<vGroup>)
                 {
-            <div style="padding-top:5px;padding-bottom:5px;"><a href="/Concert/Show/@group.ID">@group.Title</a></div>
+            <div style="padding-top:5px;padding-bottom:5px;width:100%;"> <img width="48" height="48" src="/Common/ShowGroupIcon/@group.ID" alt="歌友会" style="border-radius:50%;float:left;margin-right:10px;" /><div style="line-height:24px;float:left;"><a href="/Concert/Show/@group.ID">@group.Title</a> <br /> 人数：@group.Attenders.Count</div> <div class="clr"></div></div>
                 }
+                
             }
             else
             {
@@ -21,13 +22,14 @@
             }
 
         </div>
+       
         <div style="margin-top:20px;">
-            最新歌友会：
+            <h2>最新歌友会</h2>
             @if (((List<vGroup>)ViewBag.Groups).Count() > 0)
             {
                 foreach (var group in ViewBag.Groups as List<vGroup>)
                 {
-                    <div style="padding-top:5px;padding-bottom:5px;"><a href="/Concert/Show/@group.ID">@group.Title</a></div>
+                    <div style="padding-top:5px;padding-bottom:5px;width:100%;"> <img width="48" height="48" src="/Common/ShowGroupIcon/@group.ID" alt="歌友会" style="border-radius:50%;float:left;margin-right:10px;" /><div style="line-height:24px;float:left;"><a href="/Concert/Show/@group.ID">@group.Title</a> <br /> 人数：@group.Attenders.Count</div> <div class="clr"></div></div>
                 }
             }
             else
@@ -41,12 +43,12 @@
 
     <div class="col-3" style="width:30%;">
         <div>
-            热门活动：
+            <h2>热门活动</h2>
             @if (((List<vAction>)ViewBag.Actions2).Count > 0)
             {
                 foreach (var action in ViewBag.Actions2 as List<vAction>)
                 {
-                    <div style="padding-top:5px;padding-bottom:5px;"><a href="/Action/Show/@action.ID">@action.Title</a></div>
+                    <div style="padding-top:5px;padding-bottom:5px;"><a href="/Action/Show/@action.ID">@action.Title</a> <span>@action.Time</span></div>
                 }
             }
             else
@@ -55,12 +57,12 @@
             }
         </div>
         <div style="margin-top:20px;">
-            最新活动：
+            <h2>最新活动</h2>
             @if (((List<vAction>)ViewBag.Actions).Count > 0)
             {
                 foreach (var action in ViewBag.Actions as List<vAction>)
                 {
-                    <div style="padding-top:5px;padding-bottom:5px;"><a href="/Action/Show/@action.ID">@action.Title</a></div>
+                    <div style="padding-top:5px;padding-bottom:5px;"><a href="/Action/Show/@action.ID">@action.Title</a><span>@action.Time</span></div>
                 }
             }
             else
@@ -74,7 +76,7 @@
 
     <div class="col-3" style="width:30%;">
         <div>
-            热门音乐：
+            <h2>热门音乐</h2>
             @if (((List<vMusic>)ViewBag.Musics2).Count > 0)
             {
                 foreach (var music in ViewBag.Musics2 as List<vMusic>)
@@ -88,7 +90,7 @@
             }
         </div>
         <div style="margin-top:20px;">
-            最新音乐：
+            <h2>最新音乐</h2>
             @if (((List<vMusic>)ViewBag.Musics1).Count > 0)
             {
                 foreach (var music in ViewBag.Musics1 as List<vMusic>)

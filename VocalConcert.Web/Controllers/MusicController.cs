@@ -27,9 +27,9 @@ namespace VocalConcert.Web.Controllers
         public ActionResult Upload()
         {
             List<SelectListItem> typeList = new List<SelectListItem>();
-            typeList.Add(new SelectListItem { Text = MusicType.Cover.ToString(), Value = "0", Selected = false });
-            typeList.Add(new SelectListItem { Text = MusicType.Instrument.ToString(), Value = "1", Selected = false });
-            typeList.Add(new SelectListItem { Text = MusicType.Original.ToString(), Value = "2", Selected = false });
+            typeList.Add(new SelectListItem { Text =  "翻唱", Value = "0", Selected = false });
+            typeList.Add(new SelectListItem { Text ="伴奏", Value = "1", Selected = false });
+            typeList.Add(new SelectListItem { Text = "原创", Value = "2", Selected = false });
             ViewBag.TypeList = typeList;
             return View();
         }
@@ -43,13 +43,14 @@ namespace VocalConcert.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize]
+        [ValidateInput(false)]
         public ActionResult Upload(Music model, HttpPostedFileBase file)
         {
 
             List<SelectListItem> typeList = new List<SelectListItem>();
-            typeList.Add(new SelectListItem { Text = MusicType.Original.ToString(), Value = "2", Selected = model.Type == MusicType.Original ? true : false });
-            typeList.Add(new SelectListItem { Text = MusicType.Cover.ToString(), Value = "0", Selected = model.Type == MusicType.Cover ? true : false });
-            typeList.Add(new SelectListItem { Text = MusicType.Instrument.ToString(), Value = "1", Selected = model.Type == MusicType.Instrument ? true : false });
+            typeList.Add(new SelectListItem { Text = MusicType.伴奏.ToString(), Value = "2", Selected = model.Type == MusicType.伴奏 ? true : false });
+            typeList.Add(new SelectListItem { Text = MusicType.原创.ToString(), Value = "0", Selected = model.Type == MusicType.原创 ? true : false });
+            typeList.Add(new SelectListItem { Text = MusicType.翻唱.ToString(), Value = "1", Selected = model.Type == MusicType.翻唱 ? true : false });
 
             ViewBag.TypeList = typeList;
             if (ModelState.IsValid)
@@ -140,9 +141,9 @@ namespace VocalConcert.Web.Controllers
             music = db.Musics.Find(id);
 
             List<SelectListItem> typeList = new List<SelectListItem>();
-            typeList.Add(new SelectListItem { Text = MusicType.Original.ToString(), Value = "2", Selected = music.Type == MusicType.Original ? true : false });
-            typeList.Add(new SelectListItem { Text = MusicType.Cover.ToString(), Value = "0", Selected = music.Type == MusicType.Cover ? true : false });
-            typeList.Add(new SelectListItem { Text = MusicType.Instrument.ToString(), Value = "1", Selected = music.Type == MusicType.Instrument ? true : false });
+            typeList.Add(new SelectListItem { Text = MusicType.伴奏.ToString(), Value = "2", Selected = music.Type == MusicType.伴奏 ? true : false });
+            typeList.Add(new SelectListItem { Text = MusicType.原创.ToString(), Value = "0", Selected = music.Type == MusicType.原创 ? true : false });
+            typeList.Add(new SelectListItem { Text = MusicType.翻唱.ToString(), Value = "1", Selected = music.Type == MusicType.翻唱 ? true : false });
 
 
             ViewBag.TypeList = typeList;
